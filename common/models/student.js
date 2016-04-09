@@ -1,6 +1,7 @@
 module.exports = function(Student) {
 // Set the username to the users email address by default.
   Student.observe('before save', function createSchoolUser(ctx, next) {
+	  console.log("inside before save");
     if (ctx.instance) {
       if(ctx.isNewInstance) {
       	var student = ctx.instance;
@@ -18,8 +19,6 @@ module.exports = function(Student) {
   "resetPasswordCodeUntil": "2016-04-08",
   "createdAt": "2016-04-08",
   "updatedAt": "2016-04-08",
-  
-  "userId": 2,
   "created": "2016-04-08",
   "lastUpdated": "2016-04-08",
   "password" : student.firstName+"001"
@@ -27,8 +26,8 @@ module.exports = function(Student) {
 
           if (err) {return console.log(err);}
 
-          console.log('User assigned userid ' + schoolUser.userid + ' (' + ctx.instance.type + ')');
-
+          console.log('User assigned userid ' + schoolUser.userId + ' (' + ctx.instance.type + ')');
+          ctx.instance.userId = schoolUser.userId ;
         });
 
 
