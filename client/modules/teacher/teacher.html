@@ -1,0 +1,89 @@
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Teacher Page</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form" ng-submit="addTeacher()" method="POST"  novalidate="novalidate">
+                                        <div class="form-group">
+                                            <label>First Name:</label>
+                                            <input name="FirstName"ng-model="firstname"class="form-control" required>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Last Name:</label>
+                                            <input name="lastName" ng-model="lastName" class="form-control" required>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                             <label>Gender</label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="gender"ng-model="optionsRadiosmale" value="male" checked>male
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="gender"ng-model="optionsRadiosfemale" value="female">female
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Qualification:</label>
+                                            <input name="qualification"ng-model="qualification" class="form-control" required>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Experiance Details:</label>
+                                            <input name="experiancedetails" id="experiancedetails" class="form-control"required>
+                                           
+                                        </div>
+                                            <div class="form-group">
+                                            <label>Date of Birth:</label>
+                                            <input name="dateofbirth"ng-model="dateofbirth" type="date" class="form-control" required>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                              <label>Blood group:</label>
+                                            <input name="bloodgroup" ng-model="bloodgroup" class="form-control" required>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address:</label>
+                                            <input name="Address"ng-model="Address" class="form-control" required>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phone number-1</label>
+                                            <input name="phonenumber1" ng-model="phonenumber1" class="form-control" required>
+                                            
+                                        </div>
+                                         <div class="form-group">
+                                            <label>Phone number-2</label>
+                                            <input name="phonenumber2" ng-model="phonenumber2" class="form-control" required>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email id:</label>
+                                            <input name="emailid" ng-model="emailid" class="form-control" required>
+                                           
+                                        </div>
+                                        <input type="submit"  value="Create Teacher"></input>
+                                     </form>
+                                </div>   
+                            </div>
+                        </div>    
+                    </div>
+            <!-- /.container-fluid -->
+                </div>
+
+   </div>
+   

@@ -7,18 +7,18 @@ app.run([
               bootstrap3ElementModifier.enableValidationStateIcons(true);
        }]);
 
-app.controller('StudentCreateController',['$state', '$scope','Student', 'userPersistenceService',  function($state,$scope, userPersistenceService,Student){
+app.controller('TeacherCreateController',['$state', '$scope','Teacher', 'userPersistenceService',  function($state,$scope, userPersistenceService,Teacher){
 
  
 
-    $scope.addStudent=function(){
+    $scope.addTeacher=function(){
 
-       Student
+       Teacher
         .create({
-  "studentId": $scope.student.studentId,
-  "firstName": $scope.student.firstName,
-  "lastName": $scope.student.lastName,
-  "email" : $scope.student.email,
+  "teacherId": $scope.teacher.teacherId,
+  "firstName": $scope.teacher.firstName,
+  "lastName": $scope.teacher.lastName,
+  "email" : $scope.teacher.email,
   "admissionNo": "123456",
   "admissionDate": "2016-04-06",
   "rollNo": "123456",
@@ -32,7 +32,7 @@ app.controller('StudentCreateController',['$state', '$scope','Student', 'userPer
         .then(function() {
           setTimeout(function() {
                       
-                        $state.go('studentlist');
+                        $state.go('teacherlist');
                     }, 1000);
         });
   
@@ -40,14 +40,14 @@ app.controller('StudentCreateController',['$state', '$scope','Student', 'userPer
     }
 
 }])
-app.controller('StudentListController', ['$scope', 'Student',  'userPersistenceService' ,'$rootScope',
-      function($scope, Student,userPersistenceService,$rootScope) {
+app.controller('TeacherListController', ['$scope', 'Teacher',  'userPersistenceService' ,'$rootScope',
+      function($scope, Teacher,userPersistenceService,$rootScope) {
 	$rootScope.currentUser =  userPersistenceService.getCookieData();
     var schoolid=$rootScope.currentUser.schoolId;
     if ($rootScope.currentUser.admin) {
-    $scope.students = Student.find();
+    $scope.teachers = Teacher.find();
     } else {
-       $scope.students = Student.find({filter : {where: {
+       $scope.teachers = Teacher.find({filter : {where: {
           schoolId: schoolid
         }}});
     }

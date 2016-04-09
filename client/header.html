@@ -117,7 +117,7 @@
                         
                             
                             <!-- /.nav-second-level -->
-                        </li>
+                        
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Student Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -127,17 +127,31 @@
                                 <li>
                                     <a ui-sref="studentlist" ui-sref-active="active">Students List</a>
                                 </li>
-                                 <li ng-hide="currentUser">
-                                    <a ui-sref="home" ui-sref-active="active">Log in</a>
+                                </ul>
+                                
+          </li>
+           <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Teacher Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a ui-sref="createteacher" ui-sref-active="active">Create Teacher</a>
                                 </li>
-                                 <li ng-show="currentUser">
-            <a ui-sref="logout" ui-sref-active="active">Log out</a>
+                               
+                               
+                                </ul>
+                         
           </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
                         
-                    </ul>
+                        	
+                         <li ng-hide="currentUser">
+                                    <a ui-sref="home" ui-sref-active="active">Log in</a>
+                                </li>
+                                 <li ng-show="currentUser">
+            						<a ui-sref="logout" ui-sref-active="active">Log out</a>
+                        
+                   		 </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>

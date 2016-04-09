@@ -1,14 +1,15 @@
 angular
   .module('app')
-  .factory('AuthService', ['Schooluser', '$q', '$rootScope', function(Schooluser, $q,
+  .factory('AuthService', ['Schooluser', 'userPersistenceService', '$q', '$rootScope', function(Schooluser, userPersistenceService, $q,
       $rootScope) {
+	  var currentUser ;
     function login(email, password) {
       return Schooluser
         .login({email: email, password: password})
         .$promise
         .then(function(response) {
-          
-          $rootScope.currentUser = {
+        	
+          currentUser = {
             id: response.user.id,
             tokenId: response.id,
             email: email,
@@ -17,6 +18,8 @@ angular
             student :response.user.student,
             teacher : response.user.teacher
           };
+          $rootScope.currentUser = currentUser;
+          userPersistenceService.setCookieData(currentUser);
         });
     }
 
@@ -26,8 +29,12 @@ angular
        .$promise
        .then(function() {
          $rootScope.currentUser = null;
-         
+         userPersistenceService.clearCookieData();
        });
+    }
+    
+    function getCurrentUser() {
+    	return currentUser;
     }
 
     function register(email, password) {
@@ -42,6 +49,7 @@ angular
     return {
       login: login,
       logout: logout,
-      register: register
+      register: register,
+      getCurrentUser : getCurrentUser
     };
   }]);

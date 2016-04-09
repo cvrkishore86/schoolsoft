@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate']);
+var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'ngCookies']);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       $urlRouterProvider) {
     $stateProvider
@@ -22,7 +22,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
         templateUrl: 'modules/student/students.html',
         controller: 'StudentListController',
         authenticate: true
-      });
+      }).state('createteacher', {
+          url: '/createteacher',
+          templateUrl: 'modules/teacher/teacher.html',
+          controller: 'TeacherCreateController'
+        });
     $urlRouterProvider.otherwise('home');
   }])
   ;
