@@ -2,6 +2,12 @@ var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'n
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       $urlRouterProvider) {
     $stateProvider
+    .state('header', {
+        url: '/header',
+        templateUrl: 'modules/home/header.html',
+        controller: 'AuthLoginController',
+        authenticate: true
+      })
      .state('home', {
         url: '/home',
         templateUrl: 'modules/login/login.html',
@@ -10,7 +16,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       })
       .state('createstudent', {
         url: '/createstudent',
-        templateUrl: 'modules/student/student.html',
+    
+            templateUrl: 'modules/student/student.html',
         controller: 'StudentCreateController',
         authenticate: true
       }).state('logout', {
@@ -29,7 +36,24 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
         });
     $urlRouterProvider.otherwise('home');
   }])
-  ;
+  .run(['$rootScope', "$cookies",'$location','$state',
+    function ($rootScope,$cookies, $location,$state) {
+        // keep user logged in after page refresh
+	  $rootScope.currentUser =  $cookies.get("userName");
+	  
+ 
+       $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+    	   $rootScope.currentpage = $state.current.name;
+    	   if (!$rootScope.currentUser) {
+    		   event.preventDefault();
+    			$cookies.remove("userName");
+    			  $state.go('home');
+    			  $location.path('/home');
+    		  }
+          
+        });
+    }]);
 
 
 

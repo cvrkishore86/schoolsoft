@@ -9,7 +9,7 @@ app.run([
 
 app.controller('StudentCreateController',['$state', '$scope','Student', 'userPersistenceService','$rootScope',  function($state,$scope, Student,userPersistenceService,$rootScope){
 
-	$rootScope.currentUser =  userPersistenceService.getCookieData();
+	
 
     $scope.addStudent=function(){
     	
@@ -45,7 +45,7 @@ app.controller('StudentCreateController',['$state', '$scope','Student', 'userPer
 }])
 app.controller('StudentListController', ['$scope', 'Student',  'userPersistenceService' ,'$rootScope',
       function($scope, Student,userPersistenceService,$rootScope) {
-	$rootScope.currentUser =  userPersistenceService.getCookieData();
+
     var schoolid=$rootScope.currentUser.schoolId;
     if ($rootScope.currentUser.admin) {
     $scope.students = Student.find();

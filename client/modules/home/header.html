@@ -144,32 +144,28 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         
-                        	
+                        	<ul class="nav nav-first-level">
                          <li ng-hide="currentUser">
                                     <a ui-sref="home" ui-sref-active="active">Log in</a>
                                 </li>
                                  <li ng-show="currentUser">
             						<a ui-sref="logout" ui-sref-active="active">Log out</a>
-                        
+                        </li>
                    		 </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
-               
+ <div ng-if="currentpage == 'header'" class="container-fluid">
+       
+    
+<div id="page-wrapper"  >
+</div>
+</div>
+  
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="/dist/js/sb-admin-2.js"></script>
 

@@ -11,7 +11,7 @@ angular
        
       AuthService.login($scope.user.email, $scope.user.password)
         .then(function() {
-         
+        	$state.go('header');
         });
     };
   }])

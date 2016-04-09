@@ -15,7 +15,7 @@
   },
   
   "AccessToken": {
-    "dataSource": "mysqlschool",
+    "dataSource": "db",
     "public": false
   },
   "ACL": {
@@ -23,11 +23,11 @@
     "public": true
   },
   "RoleMapping": {
-    "dataSource": "mysqlschool",
+    "dataSource": "db",
     "public": true
   },
   "Role": {
-    "dataSource": "mysqlschool",
+    "dataSource": "db",
     "public": true
   },
   "Attendance": {
