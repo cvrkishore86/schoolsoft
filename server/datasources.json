@@ -1,0 +1,25 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory",
+    "file":"db.json"
+  },
+  "schoolsoft": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "schoolsoft",
+    "username": "root",
+    "password": "kishi287",
+    "name": "schoolsoft",
+    "connector": "mysql"
+  },
+  "mysqlschool": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "schoolsoft",
+    "password": "root",
+    "name": "mysqlschool",
+    "user": "root",
+    "connector": "mysql"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  
+  "AccessToken": {
+    "dataSource": "mysqlschool",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "RoleMapping": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Role": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Attendance": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Batch": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "BatchSubject": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Exam": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "ExamGroup": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "ExamScore": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "GradingLevels": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "School": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Parent": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Subject": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Teacher": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Timetable": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Student": {
+    "dataSource": "mysqlschool",
+    "public": true
+  },
+  "Schooluser": {
+    "dataSource": "mysqlschool",
+    "public": true
+  }
+  
+}

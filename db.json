@@ -1,0 +1,64 @@
+{
+  "ids": {
+    "AccessToken": 47,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 5,
+    "note": 2,
+    "Gift": 1,
+    "Donor": 1,
+    "Receiver": 1
+  },
+  "models": {
+    "AccessToken": {
+      "fZVCaLnflQLML1gRNK24x153LGrnGg3HoiBrIaegftLAymRPfYHZDKDh6y4qRhrG": "{\"id\":\"fZVCaLnflQLML1gRNK24x153LGrnGg3HoiBrIaegftLAymRPfYHZDKDh6y4qRhrG\",\"ttl\":1209600,\"created\":\"2016-04-08T08:08:51.406Z\",\"userId\":1234}",
+      "7QnXKVg3czeU7xaLBF2JwHtMgPMXtiXFF7AIzPbhhpbI2hYnHDIHkpHDAfkJDLGR": "{\"id\":\"7QnXKVg3czeU7xaLBF2JwHtMgPMXtiXFF7AIzPbhhpbI2hYnHDIHkpHDAfkJDLGR\",\"ttl\":1209600,\"created\":\"2016-04-08T08:28:46.325Z\",\"userId\":1234}",
+      "gsV69D1zrRhCMZ27Uy47xll7BhpTLa8um8LKl80yS2MAoJaQXsOP7Qgd3ycYwEJx": "{\"id\":\"gsV69D1zrRhCMZ27Uy47xll7BhpTLa8um8LKl80yS2MAoJaQXsOP7Qgd3ycYwEJx\",\"ttl\":1209600,\"created\":\"2016-04-08T08:35:20.315Z\",\"userId\":1234}",
+      "45XGoYfXPTJbyYZenJrXbyPpW9u7F6OcjupFE50WSl0e9qXGIbe6hZPvrXhYaPSN": "{\"id\":\"45XGoYfXPTJbyYZenJrXbyPpW9u7F6OcjupFE50WSl0e9qXGIbe6hZPvrXhYaPSN\",\"ttl\":1209600,\"created\":\"2016-04-08T08:35:29.294Z\",\"userId\":1234}",
+      "Yo19BqBjpKVAx8QFoLu1GYxgWSETnTOHES3M1mexDKEbv8egKxoyupXeCZxzEnKj": "{\"id\":\"Yo19BqBjpKVAx8QFoLu1GYxgWSETnTOHES3M1mexDKEbv8egKxoyupXeCZxzEnKj\",\"ttl\":1209600,\"created\":\"2016-04-08T08:36:38.449Z\",\"userId\":1234}",
+      "vBYwoP6miBIytX7KjioJQ3776tY0lhgKz8IOQj0z89Mz6HZEbij8eTblCRyeWXmS": "{\"id\":\"vBYwoP6miBIytX7KjioJQ3776tY0lhgKz8IOQj0z89Mz6HZEbij8eTblCRyeWXmS\",\"ttl\":1209600,\"created\":\"2016-04-08T08:37:08.303Z\",\"userId\":1234}",
+      "rzUhquwQFGP6tmlvPZx3BFoWy7XwkgaR3vIu5I7h5yFgg1x4QPOhfkYxmbvD6CRe": "{\"id\":\"rzUhquwQFGP6tmlvPZx3BFoWy7XwkgaR3vIu5I7h5yFgg1x4QPOhfkYxmbvD6CRe\",\"ttl\":1209600,\"created\":\"2016-04-08T08:38:36.371Z\",\"userId\":1234}",
+      "Dyb0mTxd4t8RJvUfEczw5tt60BRLjxrOZynrUHJn1CEB2A5m89alw2uGQjbJbOHB": "{\"id\":\"Dyb0mTxd4t8RJvUfEczw5tt60BRLjxrOZynrUHJn1CEB2A5m89alw2uGQjbJbOHB\",\"ttl\":1209600,\"created\":\"2016-04-08T08:39:46.969Z\",\"userId\":1234}",
+      "vTRztcueZxpiJVzsFbqqP4eWqGPTMf2SXl5MpLvAVhaItArBRH6kroPu1N0Yw7Na": "{\"id\":\"vTRztcueZxpiJVzsFbqqP4eWqGPTMf2SXl5MpLvAVhaItArBRH6kroPu1N0Yw7Na\",\"ttl\":1209600,\"created\":\"2016-04-08T08:39:55.097Z\",\"userId\":1234}",
+      "pTOQmWIa8F9TNVRmzPy8ETG0SwmRggWY2uYolozGFB9CGU1MjZ9FBgJ8tbwOPZf3": "{\"id\":\"pTOQmWIa8F9TNVRmzPy8ETG0SwmRggWY2uYolozGFB9CGU1MjZ9FBgJ8tbwOPZf3\",\"ttl\":1209600,\"created\":\"2016-04-08T08:53:37.823Z\",\"userId\":1234}",
+      "tWRvgwLmKytmquhdHyGGN0YTnmYCbRhjCz5lGVcZCIHUhNqXI4tbwUYbvJ4rFQL3": "{\"id\":\"tWRvgwLmKytmquhdHyGGN0YTnmYCbRhjCz5lGVcZCIHUhNqXI4tbwUYbvJ4rFQL3\",\"ttl\":1209600,\"created\":\"2016-04-08T08:58:19.390Z\",\"userId\":1234}",
+      "vEwAXetemVtiZkVx9L3FBtC46Zvl4xnFB00l3k3mjHm03M6Ehzo8doKrjxnusgJG": "{\"id\":\"vEwAXetemVtiZkVx9L3FBtC46Zvl4xnFB00l3k3mjHm03M6Ehzo8doKrjxnusgJG\",\"ttl\":1209600,\"created\":\"2016-04-08T09:08:00.683Z\",\"userId\":1234}",
+      "dDKlDnjDTVLM3tZiCiEPIAri0q0S384GDh2vtsZVhjaaq6JdjAW2XQqrRAm4US3X": "{\"id\":\"dDKlDnjDTVLM3tZiCiEPIAri0q0S384GDh2vtsZVhjaaq6JdjAW2XQqrRAm4US3X\",\"ttl\":1209600,\"created\":\"2016-04-08T13:40:20.487Z\",\"userId\":1234}",
+      "efSFBJoWAsJ2OBdE2zbBgYlq79EjxjbnSBqTAZUrZgd7G2EgaFsUP8Xn9MV1nNdK": "{\"id\":\"efSFBJoWAsJ2OBdE2zbBgYlq79EjxjbnSBqTAZUrZgd7G2EgaFsUP8Xn9MV1nNdK\",\"ttl\":1209600,\"created\":\"2016-04-08T14:00:51.337Z\",\"userId\":1234}",
+      "1DUFvuvHQQTz3Ar2BHwoCEWrrZcJNpO5oOpCpSaMj1K6KH2Y4BlYGBMkYgSTyAXv": "{\"id\":\"1DUFvuvHQQTz3Ar2BHwoCEWrrZcJNpO5oOpCpSaMj1K6KH2Y4BlYGBMkYgSTyAXv\",\"ttl\":1209600,\"created\":\"2016-04-08T14:06:33.124Z\",\"userId\":1234}",
+      "WavEVjSGKKmrDXrQlGAb3weHwPOrKJ9NQCeJwIqw121ZfHWMpvOdXgFK30VH4G6Y": "{\"id\":\"WavEVjSGKKmrDXrQlGAb3weHwPOrKJ9NQCeJwIqw121ZfHWMpvOdXgFK30VH4G6Y\",\"ttl\":1209600,\"created\":\"2016-04-08T14:15:45.937Z\",\"userId\":1234}",
+      "oCRlRxlaEPGjkNWClYLMFrvvrOP57YKsj39yuTXrDqGndvCVxEt6fHC34ScH672n": "{\"id\":\"oCRlRxlaEPGjkNWClYLMFrvvrOP57YKsj39yuTXrDqGndvCVxEt6fHC34ScH672n\",\"ttl\":1209600,\"created\":\"2016-04-08T14:16:53.193Z\",\"userId\":1234}",
+      "1rX2c3wlAQ2QqTC7XoHq1w2seCbLBXD43F5IOD0G8jNslOLs4daZ2QkCDwQwgVIF": "{\"id\":\"1rX2c3wlAQ2QqTC7XoHq1w2seCbLBXD43F5IOD0G8jNslOLs4daZ2QkCDwQwgVIF\",\"ttl\":1209600,\"created\":\"2016-04-08T14:30:10.141Z\",\"userId\":1234}",
+      "EEBCtuOgNxcfr4JVcE5Bl3dcD3OqchZ6hX4uZmXRUBF4r7jFTWWCAtPXhcJ4U33f": "{\"id\":\"EEBCtuOgNxcfr4JVcE5Bl3dcD3OqchZ6hX4uZmXRUBF4r7jFTWWCAtPXhcJ4U33f\",\"ttl\":1209600,\"created\":\"2016-04-08T14:36:32.133Z\",\"userId\":1234}",
+      "DwPq6nniaoB1i9VJkq0fmpyxkrHvfEKhtefPTW3Alf3wwQYgLTOhBl98ETMsaeLj": "{\"id\":\"DwPq6nniaoB1i9VJkq0fmpyxkrHvfEKhtefPTW3Alf3wwQYgLTOhBl98ETMsaeLj\",\"ttl\":1209600,\"created\":\"2016-04-08T14:37:07.450Z\",\"userId\":1234}",
+      "LYSGwtDzChvyEOXS5cKeVezEQFwVnC1CKb31UDT3ExoiXIk2WNslQzsXbaEoZl8D": "{\"id\":\"LYSGwtDzChvyEOXS5cKeVezEQFwVnC1CKb31UDT3ExoiXIk2WNslQzsXbaEoZl8D\",\"ttl\":1209600,\"created\":\"2016-04-08T14:37:35.351Z\",\"userId\":1234}",
+      "j7T3WQQffsZvRdAVmUBR4EkyYAsuX4UNPA9AYhD9HFdurCADDgkbPanbVSHxcR9t": "{\"id\":\"j7T3WQQffsZvRdAVmUBR4EkyYAsuX4UNPA9AYhD9HFdurCADDgkbPanbVSHxcR9t\",\"ttl\":1209600,\"created\":\"2016-04-08T14:38:09.384Z\",\"userId\":1234}",
+      "uvI0Ym8iUPj67GOAItkqbrqlMG6tTT301pKJUFWrOwrTpl9rRtPR7SmIIuZOFxlZ": "{\"id\":\"uvI0Ym8iUPj67GOAItkqbrqlMG6tTT301pKJUFWrOwrTpl9rRtPR7SmIIuZOFxlZ\",\"ttl\":1209600,\"created\":\"2016-04-08T14:39:19.004Z\",\"userId\":1234}",
+      "KbPschhHefZIBaBecz0ZgQHgAUVqOC376VYGpQNOVAPLbX0pLLYoOQUrp9hAnUP9": "{\"id\":\"KbPschhHefZIBaBecz0ZgQHgAUVqOC376VYGpQNOVAPLbX0pLLYoOQUrp9hAnUP9\",\"ttl\":1209600,\"created\":\"2016-04-08T14:39:58.690Z\",\"userId\":1234}",
+      "GX4H6DZMik4Gha853qgKA1NHkzMGEPUOjGWyGjTDhM0dJsW9vOI86VVPgcJhcQ2p": "{\"id\":\"GX4H6DZMik4Gha853qgKA1NHkzMGEPUOjGWyGjTDhM0dJsW9vOI86VVPgcJhcQ2p\",\"ttl\":1209600,\"created\":\"2016-04-08T15:07:28.652Z\",\"userId\":1234}",
+      "KDBLXTqxDehlEFr3wYjlZgYdfoH8bzkWmYE1Ptd6IZDrfnMr5OPZ9fAGXlqheWdq": "{\"id\":\"KDBLXTqxDehlEFr3wYjlZgYdfoH8bzkWmYE1Ptd6IZDrfnMr5OPZ9fAGXlqheWdq\",\"ttl\":1209600,\"created\":\"2016-04-08T15:37:36.823Z\",\"userId\":1234}",
+      "KFXdUpqgCI57VY4AVAWpNwzeX5AogEyU9nw1vfp9CzuHfLSpmlx3rEZ5ketwKGEB": "{\"id\":\"KFXdUpqgCI57VY4AVAWpNwzeX5AogEyU9nw1vfp9CzuHfLSpmlx3rEZ5ketwKGEB\",\"ttl\":1209600,\"created\":\"2016-04-08T15:38:46.527Z\",\"userId\":1234}",
+      "2pYTOQNvQMwXFqv6gyKQwQ3aTT8OLKU9Cl1lO7KD9SMaotZrAMXUx7imywj6TqXA": "{\"id\":\"2pYTOQNvQMwXFqv6gyKQwQ3aTT8OLKU9Cl1lO7KD9SMaotZrAMXUx7imywj6TqXA\",\"ttl\":1209600,\"created\":\"2016-04-08T15:41:49.672Z\",\"userId\":1234}",
+      "fB9JD0IF3MH6tYR434LkB21tZbYc3GTgC189Kq07Tq9yqEfm2zPJ6kI4fX87t17K": "{\"id\":\"fB9JD0IF3MH6tYR434LkB21tZbYc3GTgC189Kq07Tq9yqEfm2zPJ6kI4fX87t17K\",\"ttl\":1209600,\"created\":\"2016-04-08T15:43:30.912Z\",\"userId\":1234}",
+      "7wvLtpuBtg6OGGmcUbm5d2dqDRnE2gBtJlF1PGPOSZHRuLyrPwvF6MqxOEveJuBB": "{\"id\":\"7wvLtpuBtg6OGGmcUbm5d2dqDRnE2gBtJlF1PGPOSZHRuLyrPwvF6MqxOEveJuBB\",\"ttl\":1209600,\"created\":\"2016-04-08T15:47:29.833Z\",\"userId\":1234}",
+      "RTiU9VII7nw7MOvmxCFEID5mNFxFbfyXKwR0ebUzZdKyPt3AbCCOxF14UTdUyMHr": "{\"id\":\"RTiU9VII7nw7MOvmxCFEID5mNFxFbfyXKwR0ebUzZdKyPt3AbCCOxF14UTdUyMHr\",\"ttl\":1209600,\"created\":\"2016-04-08T15:56:23.181Z\",\"userId\":1234}",
+      "Fj3YBYZmiU77Zbhi2GyRF5zzQxi8mZzgcAylebEHHwvtRpPCVHfxyqlkXmIyiP5U": "{\"id\":\"Fj3YBYZmiU77Zbhi2GyRF5zzQxi8mZzgcAylebEHHwvtRpPCVHfxyqlkXmIyiP5U\",\"ttl\":1209600,\"created\":\"2016-04-08T15:57:43.831Z\",\"userId\":1234}",
+      "nCWDbFVzvF6gKbx99bmiAZdxiUpOnEqXbeCSOs34bFEMso80dRHVxBIOomIti09b": "{\"id\":\"nCWDbFVzvF6gKbx99bmiAZdxiUpOnEqXbeCSOs34bFEMso80dRHVxBIOomIti09b\",\"ttl\":1209600,\"created\":\"2016-04-08T16:44:56.723Z\",\"userId\":1234}",
+      "9clI3EDEnodJ17S41ScbbaKpF1wk1y9g7Do8CkeaDTpznWHqaFJBHAMUySpyecEH": "{\"id\":\"9clI3EDEnodJ17S41ScbbaKpF1wk1y9g7Do8CkeaDTpznWHqaFJBHAMUySpyecEH\",\"ttl\":1209600,\"created\":\"2016-04-08T17:13:06.748Z\",\"userId\":1234}"
+    },
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {
+      "1": "{\"id\":1,\"name\":\"itadmin\",\"description\":\"admin schoolsoft\",\"created\":\"2016-04-08T00:00:00.000Z\",\"modified\":\"2016-04-08T00:00:00.000Z\"}",
+      "2": "{\"id\":2,\"name\":\"student\",\"description\":\"schoolsoft student\",\"created\":\"2016-04-08T00:00:00.000Z\",\"modified\":\"2016-04-08T00:00:00.000Z\"}",
+      "3": "{\"id\":3,\"name\":\"student\",\"description\":\"schoolsoft teacher\",\"created\":\"2016-04-08T00:00:00.000Z\",\"modified\":\"2016-04-08T00:00:00.000Z\"}",
+      "4": "{\"id\":4,\"name\":\"schooladmin\",\"description\":\"schoolsoft school admin\",\"created\":\"2016-04-08T00:00:00.000Z\",\"modified\":\"2016-04-08T00:00:00.000Z\"}"
+    },
+    "note": {
+      "1": "{\"title\":\"string\",\"content\":\"string\",\"id\":1}"
+    },
+    "Gift": {},
+    "Donor": {},
+    "Receiver": {}
+  }
+}
