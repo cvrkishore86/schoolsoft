@@ -13,10 +13,10 @@ app.controller('StudentCreateController',['$state', '$scope','Student', 'userPer
 
     $scope.addStudent=function(){
     	
-/*    	var studentobj = Object.assign({}, $scope.student, $rootScope.currentUser.schoolId);
+    	var studentobj = Object.assign({}, $scope.student, $rootScope.currentUser.schoolId);
        Student
-        .create(studentobj)*/
-    	 Student
+        .create(studentobj)
+/*    	 Student
          .create({
    "studentId": $scope.student.studentId,
    "firstName": $scope.student.firstName,
@@ -30,7 +30,7 @@ app.controller('StudentCreateController',['$state', '$scope','Student', 'userPer
    "gender": 1,
    "phone1": $scope.student.phone1,
 	"schoolId" : $rootScope.currentUser.schoolId   
- })
+ })*/
         .$promise
         .then(function() {
           setTimeout(function() {

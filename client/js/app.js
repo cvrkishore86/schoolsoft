@@ -34,7 +34,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
           templateUrl: 'modules/teacher/teacher.html',
           controller: 'TeacherCreateController'
         });
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('header');
   }])
   .run(['$rootScope', "$cookies",'$location','$state',
     function ($rootScope,$cookies, $location,$state) {

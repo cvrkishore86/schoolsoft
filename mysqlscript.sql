@@ -199,41 +199,41 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`student` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`student` (
-  `student_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(100) NOT NULL,
-  `last_name` VARCHAR(4100) NOT NULL,
-  `admission_no` VARCHAR(100) NOT NULL,
-  `admission_date` DATE NOT NULL,
-  `roll_no` VARCHAR(100) NOT NULL,
-  `batch_id` INT(11) NULL DEFAULT NULL,
-  `date_of_birth` DATE NOT NULL,
+ `studentId` INT(11) NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(100) NOT NULL,
+  `lastName` VARCHAR(4100) NOT NULL,
+  `admissionNo` VARCHAR(100) NOT NULL,
+  `admissionDate` DATE NOT NULL,
+  `rollNo` VARCHAR(100) NOT NULL,
+  `batchId` INT(11) NULL DEFAULT NULL,
+  `dateOfBirth` DATE NOT NULL,
   `gender` TINYINT(4) NOT NULL,
-  `blood_group` VARCHAR(10) NULL DEFAULT NULL,
-  `birth_place` VARCHAR(100) NULL DEFAULT NULL,
-  `nationality_id` INT(11) NULL DEFAULT NULL,
+  `bloodGroup` VARCHAR(10) NULL DEFAULT NULL,
+  `birthPlace` VARCHAR(100) NULL DEFAULT NULL,
+  `nationalityId` INT(11) NULL DEFAULT NULL,
   `language` VARCHAR(100) NULL DEFAULT NULL,
   `religion` VARCHAR(100) NULL DEFAULT NULL,
   `address` VARCHAR(200) NULL DEFAULT NULL,
   `city` VARCHAR(100) NULL DEFAULT NULL,
   `state` VARCHAR(100) NULL DEFAULT NULL,
-  `pin_code` VARCHAR(100) NULL DEFAULT NULL,
-  `country_id` INT(11) NULL DEFAULT NULL,
+  `pinCode` VARCHAR(100) NULL DEFAULT NULL,
+  `countryId` INT(11) NULL DEFAULT NULL,
   `phone1` VARCHAR(45) NOT NULL,
   `phone2` VARCHAR(45) NULL DEFAULT NULL,
   `email` VARCHAR(100) NULL DEFAULT NULL,
-  `photo_filename` VARCHAR(45) NULL DEFAULT NULL,
-  `photo_content_type` VARCHAR(10) NULL DEFAULT NULL,
-  `photo_data` BLOB NULL DEFAULT NULL,
-  `is_sms_enabled` TINYINT(4) NULL DEFAULT '1',
+  `photoFilename` VARCHAR(45) NULL DEFAULT NULL,
+  `photoContentType` VARCHAR(10) NULL DEFAULT NULL,
+  `photoData` BLOB NULL DEFAULT NULL,
+  `isSmsEnabled` TINYINT(4) NULL DEFAULT '1',
   `status` VARCHAR(45) NULL DEFAULT 'ACTIVE',
-  `parent_id` INT(11) NULL DEFAULT NULL,
-  `created_at` DATETIME NULL DEFAULT NULL,
-  `updated_at` DATETIME NULL DEFAULT NULL,
-  `school_id` INT(11) NULL DEFAULT NULL,
-  `user_id` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`student_id`),
-  UNIQUE INDEX `student_id_UNIQUE` (`student_id` ASC),
-  INDEX `schoolid` (`school_id` ASC),
+  `parentId` INT(11) NULL DEFAULT NULL,
+  `createdAt` DATETIME NULL DEFAULT NULL,
+  `updatedAt` DATETIME NULL DEFAULT NULL,
+  `schoolId` INT(11) NULL DEFAULT NULL,
+  `userId` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`studentId`),
+  UNIQUE INDEX `studentId_UNIQUE` (`studentId` ASC)
+ INDEX `schoolid` (`school_id` ASC),
   INDEX `firstname` (`first_name` ASC, `last_name`(767) ASC),
   INDEX `userid_idx` (`user_id` ASC),
   INDEX `student_batch_pk_idx` (`batch_id` ASC),
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `schoolsoft`.`student` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 395357
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -608,6 +608,52 @@ CREATE TABLE IF NOT EXISTS `schoolsoft`.`timetable` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
+
+
+
+DROP TABLE IF EXISTS `schoolsoft`.`student1` ;
+
+CREATE TABLE IF NOT EXISTS `schoolsoft`.`student1` (
+  `studentId` INT(11) NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(100) NOT NULL,
+  `lastName` VARCHAR(4100) NOT NULL,
+  `admissionNo` VARCHAR(100) NOT NULL,
+  `admissionDate` DATE NOT NULL,
+  `rollNo` VARCHAR(100) NOT NULL,
+  `batchId` INT(11) NULL DEFAULT NULL,
+  `dateOfBirth` DATE NOT NULL,
+  `gender` TINYINT(4) NOT NULL,
+  `bloodGroup` VARCHAR(10) NULL DEFAULT NULL,
+  `birthPlace` VARCHAR(100) NULL DEFAULT NULL,
+  `nationalityId` INT(11) NULL DEFAULT NULL,
+  `language` VARCHAR(100) NULL DEFAULT NULL,
+  `religion` VARCHAR(100) NULL DEFAULT NULL,
+  `address` VARCHAR(200) NULL DEFAULT NULL,
+  `city` VARCHAR(100) NULL DEFAULT NULL,
+  `state` VARCHAR(100) NULL DEFAULT NULL,
+  `pinCode` VARCHAR(100) NULL DEFAULT NULL,
+  `countryId` INT(11) NULL DEFAULT NULL,
+  `phone1` VARCHAR(45) NOT NULL,
+  `phone2` VARCHAR(45) NULL DEFAULT NULL,
+  `email` VARCHAR(100) NULL DEFAULT NULL,
+  `photoFilename` VARCHAR(45) NULL DEFAULT NULL,
+  `photoContentType` VARCHAR(10) NULL DEFAULT NULL,
+  `photoData` BLOB NULL DEFAULT NULL,
+  `isSmsEnabled` TINYINT(4) NULL DEFAULT '1',
+  `status` VARCHAR(45) NULL DEFAULT 'ACTIVE',
+  `parentId` INT(11) NULL DEFAULT NULL,
+  `createdAt` DATETIME NULL DEFAULT NULL,
+  `updatedAt` DATETIME NULL DEFAULT NULL,
+  `schoolId` INT(11) NULL DEFAULT NULL,
+  `userId` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`studentId`),
+  UNIQUE INDEX `studentId_UNIQUE` (`studentId` ASC)
+  )
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = latin1;
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

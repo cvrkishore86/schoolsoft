@@ -13,7 +13,6 @@
       "./mixins"
     ]
   },
-  
   "AccessToken": {
     "dataSource": "db",
     "public": false
@@ -86,5 +85,4 @@
     "dataSource": "mysqlschool",
     "public": true
   }
-  
 }
