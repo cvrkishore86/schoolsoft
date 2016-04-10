@@ -5,26 +5,14 @@
   "options": {
     "validateUpsert": true
   },
-  "mysql": {
-    "schema": "schoolsoft",
-    "table": "teacher"
-  },
   "properties": {
-    "teacherid": {
+    "teacherId": {
       "type": "Number",
       "id": true,
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "teacherid",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "firstName": {
@@ -33,14 +21,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "first_name",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "lastName": {
@@ -49,14 +29,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "last_name",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "gender": {
@@ -65,14 +37,6 @@
       "length": null,
       "precision": 3,
       "scale": 0,
-      "mysql": {
-        "columnName": "gender",
-        "dataType": "tinyint",
-        "dataLength": null,
-        "dataPrecision": 3,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "qualification": {
@@ -81,14 +45,6 @@
       "length": 100,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "qualification",
-        "dataType": "varchar",
-        "dataLength": 100,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "experienceDetail": {
@@ -97,46 +53,22 @@
       "length": 200,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "experience_detail",
-        "dataType": "varchar",
-        "dataLength": 200,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
       "_selectable": true
     },
-    "experienceyears": {
+    "experienceInYears": {
       "type": "Number",
       "required": true,
       "length": null,
       "precision": 22,
       "scale": null,
-      "mysql": {
-        "columnName": "experienceyears",
-        "dataType": "double",
-        "dataLength": null,
-        "dataPrecision": 22,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "isActive": {
-      "type": "Number",
+      "type": "Boolean",
       "required": true,
       "length": null,
       "precision": 3,
       "scale": 0,
-      "mysql": {
-        "columnName": "is_active",
-        "dataType": "tinyint",
-        "dataLength": null,
-        "dataPrecision": 3,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "dateOfBirth": {
@@ -145,14 +77,6 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "date_of_birth",
-        "dataType": "date",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "bloodGroup": {
@@ -161,14 +85,6 @@
       "length": 10,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "blood_group",
-        "dataType": "varchar",
-        "dataLength": 10,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "homeAddress": {
@@ -177,14 +93,6 @@
       "length": 100,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "home_address",
-        "dataType": "varchar",
-        "dataLength": 100,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "photoFilename": {
@@ -193,14 +101,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "photo_filename",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
       "_selectable": true
     },
     "photoFile": {
@@ -209,14 +109,6 @@
       "length": 65535,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "photo_file",
-        "dataType": "blob",
-        "dataLength": 65535,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
       "_selectable": true
     },
     "mobile": {
@@ -225,14 +117,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "mobile",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "mobile2": {
@@ -241,14 +125,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "mobile2",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
       "_selectable": true
     },
     "email": {
@@ -257,14 +133,6 @@
       "length": 100,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "email",
-        "dataType": "varchar",
-        "dataLength": 100,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "createdAt": {
@@ -273,14 +141,6 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "created_at",
-        "dataType": "date",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "updatedAt": {
@@ -289,51 +149,38 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "updated_at",
-        "dataType": "date",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
-    "schoolid": {
+    "schoolId": {
       "type": "Number",
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "schoolid",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
-    "userid": {
+    "userId": {
       "type": "Number",
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "userid",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+   "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId"
+    },
+    "schooluser": {
+      "type": "belongsTo",
+      "model": "Schooluser",
+      "foreignKey": "userId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

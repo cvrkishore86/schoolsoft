@@ -1,12 +1,12 @@
 {
-  "name": "Batch",
+  "name": "GradingLevels",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "batchId": {
+    "gradingId": {
       "type": "Number",
       "id": true,
       "required": true,
@@ -23,28 +23,52 @@
       "scale": null,
       "_selectable": false
     },
-    "startDate": {
-      "type": "Date",
+    "batchId": {
+      "type": "Number",
       "required": true,
       "length": null,
-      "precision": null,
-      "scale": null,
+      "precision": 10,
+      "scale": 0,
       "_selectable": false
     },
-    "endDate": {
-      "type": "Date",
+    "minScore": {
+      "type": "Number",
       "required": true,
       "length": null,
-      "precision": null,
-      "scale": null,
+      "precision": 10,
+      "scale": 0,
       "_selectable": false
     },
-    "isActive": {
+    "gradingOrder": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "_selectable": true
+    },
+    "isDeleted": {
       "type": "Boolean",
       "required": true,
       "length": null,
       "precision": 3,
       "scale": 0,
+      "_selectable": false
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "_selectable": false
+    },
+    "updatedAt": {
+      "type": "Date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
       "_selectable": false
     },
     "schoolId": {
@@ -55,7 +79,15 @@
       "scale": 0,
       "_selectable": false
     },
-    "gradingType": {
+    "creditPoints": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "_selectable": false
+    },
+    "description": {
       "type": "String",
       "required": false,
       "length": 45,
@@ -70,8 +102,13 @@
       "type": "belongsTo",
       "model": "School",
       "foreignKey": "schoolId"
+      },
+       "batch": {
+      "type": "belongsTo",
+      "model": "Batch",
+      "foreignKey": "batchId"
       }
-   },
+  },
   "acls": [],
   "methods": {}
 }

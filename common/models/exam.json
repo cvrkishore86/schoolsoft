@@ -5,26 +5,14 @@
   "options": {
     "validateUpsert": true
   },
-  "mysql": {
-    "schema": "schoolsoft",
-    "table": "exam"
-  },
   "properties": {
-    "examid": {
+    "examId": {
       "type": "Number",
       "id": true,
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "examid",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "examGroupId": {
@@ -33,14 +21,6 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "exam_group_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "subjectId": {
@@ -49,14 +29,6 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "subject_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "startTime": {
@@ -65,14 +37,6 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "start_time",
-        "dataType": "datetime",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
       "_selectable": true
     },
     "endTime": {
@@ -81,14 +45,6 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "end_time",
-        "dataType": "datetime",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
       "_selectable": true
     },
     "maximumMarks": {
@@ -97,14 +53,6 @@
       "length": null,
       "precision": 22,
       "scale": null,
-      "mysql": {
-        "columnName": "maximum_marks",
-        "dataType": "double",
-        "dataLength": null,
-        "dataPrecision": 22,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "minimumMarks": {
@@ -113,14 +61,6 @@
       "length": null,
       "precision": 22,
       "scale": null,
-      "mysql": {
-        "columnName": "minimum_marks",
-        "dataType": "double",
-        "dataLength": null,
-        "dataPrecision": 22,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "gradingLevelId": {
@@ -129,14 +69,6 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "grading_level_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "weightage": {
@@ -145,14 +77,6 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "weightage",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "createdAt": {
@@ -161,14 +85,6 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "created_at",
-        "dataType": "datetime",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "updatedAt": {
@@ -177,14 +93,6 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "updated_at",
-        "dataType": "datetime",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "schoolId": {
@@ -193,19 +101,27 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "school_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+   "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId"
+      },
+       "examgroup": {
+      "type": "belongsTo",
+      "model": "ExamGroup",
+      "foreignKey": "examGroupId"
+      },
+       "subject": {
+      "type": "belongsTo",
+      "model": "Subject",
+      "foreignKey": "subjectId"
+      }
+  },
   "acls": [],
   "methods": {}
 }

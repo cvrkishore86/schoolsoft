@@ -5,26 +5,14 @@
   "options": {
     "validateUpsert": true
   },
-  "mysql": {
-    "schema": "schoolsoft",
-    "table": "timetable"
-  },
   "properties": {
-    "timetableid": {
+    "timeTableId": {
       "type": "Number",
       "id": true,
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "timetableid",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "weekday": {
@@ -33,14 +21,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "weekday",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "startTime": {
@@ -49,14 +29,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "start_time",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "endTime": {
@@ -65,14 +37,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "end_time",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "subjectId": {
@@ -81,14 +45,6 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "subject_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "teacherId": {
@@ -97,14 +53,6 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "teacher_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "batchId": {
@@ -113,35 +61,40 @@
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "batch_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
-    "schoolid": {
+    "schoolId": {
       "type": "Number",
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "schoolid",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+  "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId"
+      },
+       "batch": {
+      "type": "belongsTo",
+      "model": "Batch",
+      "foreignKey": "batchId"
+      },
+       "subject": {
+      "type": "belongsTo",
+      "model": "Subject",
+      "foreignKey": "subjectId"
+      },
+       "teacher": {
+      "type": "belongsTo",
+      "model": "Teacher",
+      "foreignKey": "teacherId"
+      }
+  },
   "acls": [],
   "methods": {}
 }

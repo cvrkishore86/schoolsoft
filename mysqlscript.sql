@@ -21,20 +21,6 @@ DROP SCHEMA IF EXISTS `schoolsoft` ;
 CREATE SCHEMA IF NOT EXISTS `schoolsoft` DEFAULT CHARACTER SET latin1 ;
 USE `schoolsoft` ;
 
--- -----------------------------------------------------
--- Table `schoolsoft`.`accesstoken`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`accesstoken` ;
-
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`accesstoken` (
-  `id` VARCHAR(255) NOT NULL,
-  `ttl` INT(11) NULL DEFAULT NULL,
-  `created` DATETIME NULL DEFAULT NULL,
-  `userId` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
 
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`acl`
@@ -60,20 +46,15 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`schooluser` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`schooluser` (
+`userId` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(100) NOT NULL,
-  `first_name` VARCHAR(100) NOT NULL,
-  `last_name` VARCHAR(100) NULL DEFAULT NULL,
+  `firstName` VARCHAR(100) NOT NULL,
+  `lastName` VARCHAR(100) NULL DEFAULT NULL,
   `email` VARCHAR(100) NOT NULL,
   `admin` TINYINT(4) NOT NULL,
   `student` TINYINT(4) NOT NULL,
   `employee` TINYINT(4) NOT NULL,
-  `hashed_password` VARCHAR(45) NOT NULL,
-  `reset_password_code` VARCHAR(45) NOT NULL,
-  `reset_password_code_until` DATETIME NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  `school_id` INT(11) NULL DEFAULT NULL,
-  `user_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `schoolId` INT(11) NULL DEFAULT NULL,
   `realm` VARCHAR(512) NULL DEFAULT NULL,
   `password` VARCHAR(512) NOT NULL,
   `credentials` TEXT NULL DEFAULT NULL,
@@ -83,16 +64,16 @@ CREATE TABLE IF NOT EXISTS `schoolsoft`.`schooluser` (
   `status` VARCHAR(512) NULL DEFAULT NULL,
   `created` DATETIME NULL DEFAULT NULL,
   `lastUpdated` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`userId`),
   INDEX `email` (`email` ASC),
-  INDEX `schoolindex` (`school_id` ASC),
+  INDEX `schoolindex` (`schoolId` ASC),
   CONSTRAINT `userschoolfk`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 1235
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -102,21 +83,15 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`school` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`school` (
-  `schoolid` INT(11) NOT NULL,
+  `schoolId` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `code` VARCHAR(45) NULL DEFAULT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  `admin_id` INT(11) NOT NULL,
-  PRIMARY KEY (`schoolid`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
-  INDEX `adminkey_idx` (`admin_id` ASC),
-  CONSTRAINT `adminkey`
-    FOREIGN KEY (`admin_id`)
-    REFERENCES `schoolsoft`.`schooluser` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`schoolId`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -126,46 +101,47 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`parent` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`parent` (
-  `parentid` INT(11) NOT NULL,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
+  `paretnId` INT(11) NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(45) NOT NULL,
+  `lastName` VARCHAR(45) NOT NULL,
   `relation` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `office_phone1` VARCHAR(45) NULL DEFAULT NULL,
-  `office_phone2` VARCHAR(45) NULL DEFAULT NULL,
-  `mobile_phone` VARCHAR(45) NULL DEFAULT NULL,
-  `office_address` VARCHAR(100) NULL DEFAULT NULL,
+  `officePhone1` VARCHAR(45) NULL DEFAULT NULL,
+  `officePhone2` VARCHAR(45) NULL DEFAULT NULL,
+  `mobilePhone` VARCHAR(45) NULL DEFAULT NULL,
+  `officeAddress` VARCHAR(100) NULL DEFAULT NULL,
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `state` VARCHAR(45) NULL DEFAULT NULL,
-  `country_id` INT(11) NULL DEFAULT NULL,
+  `countryId` INT(11) NULL DEFAULT NULL,
   `dob` DATE NULL DEFAULT NULL,
   `occupation` VARCHAR(45) NULL DEFAULT NULL,
   `education` VARCHAR(100) NULL DEFAULT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  `school_id` INT(11) NOT NULL,
-  `user_id` INT(11) NOT NULL,
-  `student_id` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`parentid`),
-  INDEX `student_idx` (`student_id` ASC),
-  INDEX `user_idx` (`user_id` ASC),
-  INDEX `school_idx` (`school_id` ASC),
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  `schoolId` INT(11) NOT NULL, /* what is this column do we require schoolid and user id , i think studnet id is sufficinet TODO*/
+  `userId` INT(11)  NULL DEFAULT NULL,
+  `studentId` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`paretnId`),
+  INDEX `studentIdx` (`studentId` ASC),
+  INDEX `userIdx` (`userId` ASC),
+  INDEX `schoolIdx` (`schoolId` ASC),
   CONSTRAINT `school`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `student`
-    FOREIGN KEY (`student_id`)
-    REFERENCES `schoolsoft`.`student` (`student_id`)
+    FOREIGN KEY (`studentId`)
+    REFERENCES `schoolsoft`.`student` (`studentId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `user`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `schoolsoft`.`schooluser` (`user_id`)
+    FOREIGN KEY (`userId`)
+    REFERENCES `schoolsoft`.`schooluser` (`userId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -175,21 +151,22 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`batch` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`batch` (
-  `batchid` INT(11) NOT NULL,
+  `batchId` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `start_date` DATE NOT NULL,
-  `end_date` DATE NOT NULL,
-  `is_active` TINYINT(4) NOT NULL DEFAULT '1',
-  `school_id` INT(11) NOT NULL,
-  `grading_type` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`batchid`),
-  INDEX `batchschool_idx` (`school_id` ASC),
+  `startDate` DATE NOT NULL,
+  `endDate` DATE NOT NULL,
+  `isActive` TINYINT(4) NOT NULL DEFAULT '1',
+  `schoolId` INT(11) NOT NULL,
+  `gradingType` VARCHAR(45) NULL DEFAULT NULL, /* what is this column grading type TODO*/
+  PRIMARY KEY (`batchId`),
+  INDEX `batchschoolIdx` (`schoolId` ASC),
   CONSTRAINT `batchschool`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -226,36 +203,29 @@ CREATE TABLE IF NOT EXISTS `schoolsoft`.`student` (
   `photoData` BLOB NULL DEFAULT NULL,
   `isSmsEnabled` TINYINT(4) NULL DEFAULT '1',
   `status` VARCHAR(45) NULL DEFAULT 'ACTIVE',
-  `parentId` INT(11) NULL DEFAULT NULL,
   `createdAt` DATETIME NULL DEFAULT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
   `schoolId` INT(11) NULL DEFAULT NULL,
   `userId` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`studentId`),
-  UNIQUE INDEX `studentId_UNIQUE` (`studentId` ASC)
- INDEX `schoolid` (`school_id` ASC),
-  INDEX `firstname` (`first_name` ASC, `last_name`(767) ASC),
-  INDEX `userid_idx` (`user_id` ASC),
-  INDEX `student_batch_pk_idx` (`batch_id` ASC),
-  INDEX `parentpk_idx` (`parent_id` ASC),
-  CONSTRAINT `parentpk`
-    FOREIGN KEY (`parent_id`)
-    REFERENCES `schoolsoft`.`parent` (`parentid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  UNIQUE INDEX `studentId_UNIQUE` (`studentId` ASC),
+  INDEX `schoolId` (`schoolId` ASC),
+  INDEX `firstname` (`firstName` ASC, `lastName`(767) ASC),
+  INDEX `userid_idx` (`userId` ASC),
+  INDEX `student_batch_pk_idx` (`batchId` ASC),
   CONSTRAINT `schoolstundent`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `student_batch_pk`
-    FOREIGN KEY (`batch_id`)
-    REFERENCES `schoolsoft`.`batch` (`batchid`)
+    FOREIGN KEY (`batchId`)
+    REFERENCES `schoolsoft`.`batch` (`batchId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `userid`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `schoolsoft`.`schooluser` (`user_id`)
+    FOREIGN KEY (`userId`)
+    REFERENCES `schoolsoft`.`schooluser` (`userId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -268,27 +238,29 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `schoolsoft`.`attendance` ;
 
+/* Does attendance table need reference to batch id or only studnet id is enough? does it require schoolid as student table any how has school id */
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`attendance` (
-  `attendanceid` INT(11) NOT NULL,
-  `student_id` INT(11) NOT NULL,
-  `day_date` DATE NOT NULL,
-  `school_id` INT(11) NOT NULL,
+  `attendanceId` INT(11) NOT NULL  AUTO_INCREMENT,
+  `studentId` INT(11) NOT NULL,
+  `dayDate` DATE NOT NULL,
+  `schoolId` INT(11) NOT NULL,
   `morning` TINYINT(4) NOT NULL,
   `afternoon` TINYINT(4) NOT NULL,
-  PRIMARY KEY (`attendanceid`),
-  INDEX `studentfk_idx` (`student_id` ASC),
-  INDEX `attschoolfk_idx` (`school_id` ASC),
+  PRIMARY KEY (`attendanceId`),
+  INDEX `studentfk_idx` (`studentId` ASC),
+  INDEX `attschoolfk_idx` (`schoolId` ASC),
   CONSTRAINT `attschoolfk`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `attstudentfk`
-    FOREIGN KEY (`student_id`)
-    REFERENCES `schoolsoft`.`student` (`student_id`)
+    FOREIGN KEY (`studentId`)
+    REFERENCES `schoolsoft`.`student` (`studentId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -298,78 +270,81 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`subject` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`subject` (
-  `subjectid` INT(11) NOT NULL,
+  `subjectId` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `code` VARCHAR(45) NULL DEFAULT NULL,
-  `schoolid` INT(11) NOT NULL,
-  `is_active` TINYINT(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`subjectid`),
-  INDEX `subjectschoolid_idx` (`schoolid` ASC),
-  CONSTRAINT `subjectschoolid`
-    FOREIGN KEY (`schoolid`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+  `schoolId` INT(11) NOT NULL,
+  `isActive` TINYINT(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`subjectId`),
+  INDEX `subjectschoolId_idx` (`schoolId` ASC),
+  CONSTRAINT `subjectschoolId`
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+ AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`batch_subject`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`batch_subject` ;
-
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`batch_subject` (
-  `batch_subject_id` INT(11) NOT NULL,
-  `batch_id` INT(11) NOT NULL,
-  `subject_id` INT(11) NOT NULL,
-  `created_at` DATE NOT NULL,
-  `updated_at` DATE NOT NULL,
-  PRIMARY KEY (`batch_subject_id`),
-  INDEX `batchfk_idx` (`batch_id` ASC),
-  INDEX `subjectfk_idx` (`subject_id` ASC),
+DROP TABLE IF EXISTS `schoolsoft`.`batchsubject` ;
+/* should batch subject table have a school id */
+CREATE TABLE IF NOT EXISTS `schoolsoft`.`batchsubject` (
+  `batchSubjectId` INT(11) NOT NULL AUTO_INCREMENT,
+  `batchId` INT(11) NOT NULL,
+  `subjectId` INT(11) NOT NULL,
+  `createdAt` DATE NOT NULL,
+  `updatedAt` DATE NOT NULL,
+  PRIMARY KEY (`batchSubjectId`),
+  INDEX `batchfk_idx` (`batchId` ASC),
+  INDEX `subjectfk_idx` (`subjectId` ASC),
   CONSTRAINT `batchfk`
-    FOREIGN KEY (`batch_id`)
-    REFERENCES `schoolsoft`.`batch` (`batchid`)
+    FOREIGN KEY (`batchId`)
+    REFERENCES `schoolsoft`.`batch` (`batchId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `subjectfk`
-    FOREIGN KEY (`subject_id`)
-    REFERENCES `schoolsoft`.`subject` (`subjectid`)
+    FOREIGN KEY (`subjectId`)
+    REFERENCES `schoolsoft`.`subject` (`subjectId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`exam_group`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`exam_group` ;
+DROP TABLE IF EXISTS `schoolsoft`.`examgroup` ;
 
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`exam_group` (
-  `examgroupid` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `schoolsoft`.`examgroup` (
+  `examGroupId` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `batch_id` INT(11) NULL DEFAULT NULL,
-  `exam_type` VARCHAR(45) NULL DEFAULT NULL,
-  `exam_group_start_date` DATE NOT NULL,
-  `exam_group_end_date` DATE NOT NULL,
-  `schoolid` INT(11) NULL DEFAULT NULL,
-  `is_final_exam` TINYINT(4) NULL DEFAULT NULL,
-  PRIMARY KEY (`examgroupid`),
-  INDEX `examgroup_school_idx` (`schoolid` ASC),
-  INDEX `examgroupbatch_idx` (`batch_id` ASC),
+  `batchId` INT(11) NULL DEFAULT NULL,
+  `examType` VARCHAR(45) NULL DEFAULT NULL,
+  `examGroupStartDate` DATE NOT NULL,
+  `examGroupEndDate` DATE NOT NULL,
+  `schoolId` INT(11) NULL DEFAULT NULL,
+  `isFinalExam` TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`examGroupId`),
+  INDEX `examgroup_schoolIdx` (`schoolId` ASC),
+  INDEX `examgroupbatchIdx` (`batchId` ASC),
   CONSTRAINT `examgroupbatch`
-    FOREIGN KEY (`batch_id`)
-    REFERENCES `schoolsoft`.`batch` (`batchid`)
+    FOREIGN KEY (`batchId`)
+    REFERENCES `schoolsoft`.`batch` (`batchId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `examgroup_school`
-    FOREIGN KEY (`schoolid`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -377,193 +352,164 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `schoolsoft`.`exam`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `schoolsoft`.`exam` ;
-
+/*Should this table have fk to Batch*/
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`exam` (
-  `examid` INT(11) NOT NULL,
-  `exam_group_id` INT(11) NOT NULL,
-  `subject_id` INT(11) NOT NULL,
-  `start_time` DATETIME NULL DEFAULT NULL,
-  `end_time` DATETIME NULL DEFAULT NULL,
-  `maximum_marks` DOUBLE NOT NULL,
+  `examId` INT(11) NOT NULL AUTO_INCREMENT,
+  `examGroupId` INT(11) NOT NULL,
+  `subjectId` INT(11) NOT NULL,
+  `startTime` DATETIME NULL DEFAULT NULL,
+  `endTime` DATETIME NULL DEFAULT NULL,
+  `maximumMarks` DOUBLE NOT NULL,
   `minimum_marks` DOUBLE NOT NULL,
-  `grading_level_id` INT(11) NOT NULL,
+  `gradingLevelId` INT(11) NOT NULL,
   `weightage` INT(11) NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  `school_id` INT(11) NOT NULL,
-  PRIMARY KEY (`examid`),
-  INDEX `school_idx` (`school_id` ASC),
-  INDEX `examgroup_idx` (`exam_group_id` ASC),
-  INDEX `examsubjectfk_idx` (`subject_id` ASC),
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  `schoolId` INT(11) NOT NULL,
+  PRIMARY KEY (`examId`),
+  INDEX `schoolIdx` (`schoolId` ASC),
+  INDEX `examgroup_idx` (`examGroupId` ASC),
+  INDEX `examsubjectfk_idx` (`subjectId` ASC),
   CONSTRAINT `examgroup`
-    FOREIGN KEY (`exam_group_id`)
-    REFERENCES `schoolsoft`.`exam_group` (`examgroupid`)
+    FOREIGN KEY (`examGroupId`)
+    REFERENCES `schoolsoft`.`examgroup` (`examGroupId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `examsubjectfk`
-    FOREIGN KEY (`subject_id`)
-    REFERENCES `schoolsoft`.`subject` (`subjectid`)
+    FOREIGN KEY (`subjectId`)
+    REFERENCES `schoolsoft`.`subject` (`subjectId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `school_exam`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`grading_levels`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`grading_levels` ;
+DROP TABLE IF EXISTS `schoolsoft`.`gradinglevels` ;
 
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`grading_levels` (
-  `gradingid` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `schoolsoft`.`gradinglevels` (
+  `gradingId` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `batch_id` INT(11) NOT NULL,
-  `min_score` INT(11) NOT NULL,
-  `order` INT(11) NULL DEFAULT NULL,
-  `is_deleted` TINYINT(4) NOT NULL DEFAULT '0',
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  `school_id` INT(11) NOT NULL,
-  `credit_points` DOUBLE NOT NULL,
+  `batchId` INT(11) NOT NULL,
+  `minScore` INT(11) NOT NULL,
+  `gradingOrder` INT(11) NULL DEFAULT NULL,
+  `isDeleted` TINYINT(4) NOT NULL DEFAULT '0',
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  `schoolId` INT(11) NOT NULL,
+  `creditPoints` DOUBLE NOT NULL,
   `description` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`gradingid`),
-  INDEX `grading_school_idx` (`school_id` ASC),
-  INDEX `gradbatchfk_idx` (`batch_id` ASC),
+  PRIMARY KEY (`gradingId`),
+  INDEX `grading_schoolIdx` (`schoolId` ASC),
+  INDEX `gradbatchfk_idx` (`batchId` ASC),
   CONSTRAINT `gradbatchfk`
-    FOREIGN KEY (`batch_id`)
-    REFERENCES `schoolsoft`.`batch` (`batchid`)
+    FOREIGN KEY (`batchId`)
+    REFERENCES `schoolsoft`.`batch` (`batchId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `grading_school`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`exam_score`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`exam_score` ;
+DROP TABLE IF EXISTS `schoolsoft`.`examscore` ;
 
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`exam_score` (
-  `examscoreid` INT(11) NOT NULL,
-  `student_id` INT(11) NOT NULL,
-  `exam_id` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `schoolsoft`.`examscore` (
+  `examScoreId` INT(11) NOT NULL AUTO_INCREMENT,
+  `studentId` INT(11) NOT NULL,
+  `examId` INT(11) NOT NULL,
   `marks` DOUBLE NOT NULL,
-  `grading_level_id` INT(11) NOT NULL,
+  `gradingLevelId` INT(11) NOT NULL,
   `remarks` VARCHAR(45) NULL DEFAULT NULL,
-  `is_passed` TINYINT(4) NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  `school_id` INT(11) NOT NULL,
-  PRIMARY KEY (`examscoreid`),
-  INDEX `schoolexamscore_idx` (`school_id` ASC),
-  INDEX `student_exam_score_idx` (`student_id` ASC),
-  INDEX `exam_examscore_idx` (`exam_id` ASC),
-  INDEX `gradingfk_idx` (`grading_level_id` ASC),
+  `isPassed` TINYINT(4) NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  `schoolId` INT(11) NOT NULL,
+  PRIMARY KEY (`examScoreId`),
+  INDEX `schoolexamscore_idx` (`schoolId` ASC),
+  INDEX `student_exam_score_idx` (`studentId` ASC),
+  INDEX `exam_examscore_idx` (`examId` ASC),
+  INDEX `gradingfk_idx` (`gradingLevelId` ASC),
   CONSTRAINT `exam_examscore`
-    FOREIGN KEY (`exam_id`)
-    REFERENCES `schoolsoft`.`exam` (`examid`)
+    FOREIGN KEY (`examId`)
+    REFERENCES `schoolsoft`.`exam` (`examId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `gradingfk`
-    FOREIGN KEY (`grading_level_id`)
-    REFERENCES `schoolsoft`.`grading_levels` (`gradingid`)
+    FOREIGN KEY (`gradingLevelId`)
+    REFERENCES `schoolsoft`.`grading_levels` (`gradingId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `schoolexamscore`
-    FOREIGN KEY (`school_id`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `student_exam_score`
-    FOREIGN KEY (`student_id`)
-    REFERENCES `schoolsoft`.`student` (`student_id`)
+    FOREIGN KEY (`studentId`)
+    REFERENCES `schoolsoft`.`student` (`studentId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `schoolsoft`.`role`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`role` ;
-
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`role` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(512) NOT NULL,
-  `description` VARCHAR(512) NULL DEFAULT NULL,
-  `created` DATETIME NULL DEFAULT NULL,
-  `modified` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `schoolsoft`.`rolemapping`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`rolemapping` ;
-
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`rolemapping` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `principalType` VARCHAR(512) NULL DEFAULT NULL,
-  `principalId` VARCHAR(512) NULL DEFAULT NULL,
-  `roleId` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`teacher`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `schoolsoft`.`teacher` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`teacher` (
-  `teacherid` INT(11) NOT NULL,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
+  `teacherId` INT(11) NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(45) NOT NULL,
+  `lastName` VARCHAR(45) NOT NULL,
   `gender` TINYINT(4) NOT NULL DEFAULT '1',
   `qualification` VARCHAR(100) NOT NULL,
-  `experience_detail` VARCHAR(200) NULL DEFAULT NULL,
-  `experienceyears` DOUBLE NOT NULL,
-  `is_active` TINYINT(4) NOT NULL DEFAULT '1',
-  `date_of_birth` DATE NOT NULL,
-  `blood_group` VARCHAR(10) NOT NULL,
-  `home_address` VARCHAR(100) NOT NULL,
-  `photo_filename` VARCHAR(45) NULL DEFAULT NULL,
-  `photo_file` BLOB NULL DEFAULT NULL,
+  `experienceDetail` VARCHAR(200) NULL DEFAULT NULL,
+  `experienceInYears` DOUBLE NOT NULL,
+  `isActive` TINYINT(4) NOT NULL DEFAULT '1',
+  `dateOfBirth` DATE NOT NULL,
+  `bloodGroup` VARCHAR(10) NOT NULL,
+  `homeAddress` VARCHAR(100) NOT NULL,
+  `photoFilename` VARCHAR(45) NULL DEFAULT NULL,
+  `photoFile` BLOB NULL DEFAULT NULL,
   `mobile` VARCHAR(45) NOT NULL,
   `mobile2` VARCHAR(45) NULL DEFAULT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `created_at` DATE NOT NULL,
-  `updated_at` DATE NOT NULL,
-  `schoolid` INT(11) NOT NULL,
-  `userid` INT(11) NOT NULL,
-  PRIMARY KEY (`teacherid`),
-  INDEX `teacherschoolpk_idx` (`schoolid` ASC),
+  `createdAt` DATE NOT NULL,
+  `updatedAt` DATE NOT NULL,
+  `schoolId` INT(11) NOT NULL,
+  `userId` INT(11) NOT NULL,
+  PRIMARY KEY (`teacherId`),
+  INDEX `teacherschoolpk_idx` (`schoolId` ASC),
   INDEX `teacheruserfk_idx` (`userid` ASC),
   CONSTRAINT `teacherschoolpk`
-    FOREIGN KEY (`schoolid`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `teacheruserfk`
     FOREIGN KEY (`userid`)
-    REFERENCES `schoolsoft`.`schooluser` (`user_id`)
+    REFERENCES `schoolsoft`.`schooluser` (`userId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -573,37 +519,37 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`timetable` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`timetable` (
-  `timetableid` INT(11) NOT NULL,
+  `timeTableId` INT(11) NOT NULL AUTO_INCREMENT,
   `weekday` VARCHAR(45) NOT NULL,
-  `start_time` VARCHAR(45) NOT NULL,
-  `end_time` VARCHAR(45) NOT NULL,
-  `subject_id` INT(11) NOT NULL,
-  `teacher_id` INT(11) NOT NULL,
-  `batch_id` INT(11) NOT NULL,
-  `schoolid` INT(11) NOT NULL,
+  `startTime` VARCHAR(45) NOT NULL,
+  `endTime` VARCHAR(45) NOT NULL,
+  `subjectId` INT(11) NOT NULL,
+  `teacherId` INT(11) NOT NULL,
+  `batchId` INT(11) NOT NULL,
+  `schoolId` INT(11) NOT NULL,
   PRIMARY KEY (`timetableid`),
-  INDEX `timetableschoolidfk_idx` (`schoolid` ASC),
-  INDEX `timetablebatchfk_idx` (`batch_id` ASC),
-  INDEX `timetablesubjectfk_idx` (`subject_id` ASC),
-  INDEX `timetableteacherfk_idx` (`teacher_id` ASC),
+  INDEX `timetableschoolIdfk_idx` (`schoolId` ASC),
+  INDEX `timetablebatchfk_idx` (`batchId` ASC),
+  INDEX `timetablesubjectfk_idx` (`subjectId` ASC),
+  INDEX `timetableteacherfk_idx` (`teacherId` ASC),
   CONSTRAINT `timetablebatchfk`
-    FOREIGN KEY (`batch_id`)
-    REFERENCES `schoolsoft`.`batch` (`batchid`)
+    FOREIGN KEY (`batchId`)
+    REFERENCES `schoolsoft`.`batch` (`batchId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `timetableschoolidfk`
-    FOREIGN KEY (`schoolid`)
-    REFERENCES `schoolsoft`.`school` (`schoolid`)
+  CONSTRAINT `timetableschoolIdfk`
+    FOREIGN KEY (`schoolId`)
+    REFERENCES `schoolsoft`.`school` (`schoolId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `timetablesubjectfk`
-    FOREIGN KEY (`subject_id`)
-    REFERENCES `schoolsoft`.`subject` (`subjectid`)
+    FOREIGN KEY (`subjectId`)
+    REFERENCES `schoolsoft`.`subject` (`subjectId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `timetableteacherfk`
-    FOREIGN KEY (`teacher_id`)
-    REFERENCES `schoolsoft`.`teacher` (`teacherid`)
+    FOREIGN KEY (`teacherId`)
+    REFERENCES `schoolsoft`.`teacher` (`teacherId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -611,47 +557,6 @@ DEFAULT CHARACTER SET = latin1;
 
 
 
-DROP TABLE IF EXISTS `schoolsoft`.`student1` ;
-
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`student1` (
-  `studentId` INT(11) NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(100) NOT NULL,
-  `lastName` VARCHAR(4100) NOT NULL,
-  `admissionNo` VARCHAR(100) NOT NULL,
-  `admissionDate` DATE NOT NULL,
-  `rollNo` VARCHAR(100) NOT NULL,
-  `batchId` INT(11) NULL DEFAULT NULL,
-  `dateOfBirth` DATE NOT NULL,
-  `gender` TINYINT(4) NOT NULL,
-  `bloodGroup` VARCHAR(10) NULL DEFAULT NULL,
-  `birthPlace` VARCHAR(100) NULL DEFAULT NULL,
-  `nationalityId` INT(11) NULL DEFAULT NULL,
-  `language` VARCHAR(100) NULL DEFAULT NULL,
-  `religion` VARCHAR(100) NULL DEFAULT NULL,
-  `address` VARCHAR(200) NULL DEFAULT NULL,
-  `city` VARCHAR(100) NULL DEFAULT NULL,
-  `state` VARCHAR(100) NULL DEFAULT NULL,
-  `pinCode` VARCHAR(100) NULL DEFAULT NULL,
-  `countryId` INT(11) NULL DEFAULT NULL,
-  `phone1` VARCHAR(45) NOT NULL,
-  `phone2` VARCHAR(45) NULL DEFAULT NULL,
-  `email` VARCHAR(100) NULL DEFAULT NULL,
-  `photoFilename` VARCHAR(45) NULL DEFAULT NULL,
-  `photoContentType` VARCHAR(10) NULL DEFAULT NULL,
-  `photoData` BLOB NULL DEFAULT NULL,
-  `isSmsEnabled` TINYINT(4) NULL DEFAULT '1',
-  `status` VARCHAR(45) NULL DEFAULT 'ACTIVE',
-  `parentId` INT(11) NULL DEFAULT NULL,
-  `createdAt` DATETIME NULL DEFAULT NULL,
-  `updatedAt` DATETIME NULL DEFAULT NULL,
-  `schoolId` INT(11) NULL DEFAULT NULL,
-  `userId` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`studentId`),
-  UNIQUE INDEX `studentId_UNIQUE` (`studentId` ASC)
-  )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1
-DEFAULT CHARACTER SET = latin1;
 
 
 

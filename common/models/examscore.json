@@ -1,12 +1,12 @@
 {
-  "name": "Attendance",
+  "name": "ExamScore",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "attendanceId": {
+    "examScoreId": {
       "type": "Number",
       "id": true,
       "required": true,
@@ -23,7 +23,55 @@
       "scale": 0,
       "_selectable": false
     },
-    "dayDate": {
+    "examId": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "_selectable": false
+    },
+    "marks": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 22,
+      "scale": null,
+      "_selectable": false
+    },
+    "gradingLevelId": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "_selectable": false
+    },
+    "remarks": {
+      "type": "String",
+      "required": false,
+      "length": 45,
+      "precision": null,
+      "scale": null,
+      "_selectable": true
+    },
+    "isPassed": {
+      "type": "Boolean",
+      "required": true,
+      "length": null,
+      "precision": 3,
+      "scale": 0,
+      "_selectable": false
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "_selectable": false
+    },
+    "updatedAt": {
       "type": "Date",
       "required": true,
       "length": null,
@@ -38,30 +86,24 @@
       "precision": 10,
       "scale": 0,
       "_selectable": false
-    },
-    "morning": {
-      "type": "Boolean",
-      "required": true,
-      "length": null,
-      "precision": 3,
-      "scale": 0,
-      "_selectable": false
-    },
-    "afternoon": {
-      "type": "Boolean",
-      "required": true,
-      "length": null,
-      "precision": 3,
-      "scale": 0,
-      "_selectable": false
     }
   },
   "validations": [],
   "relations": {
-  "student": {
+  "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId"
+      },
+      "student": {
       "type": "belongsTo",
       "model": "Student",
       "foreignKey": "studentId"
+      },
+      "exam": {
+      "type": "belongsTo",
+      "model": "Exam",
+      "foreignKey": "examId"
       }
   },
   "acls": [],

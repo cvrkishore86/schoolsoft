@@ -1,12 +1,12 @@
 {
-  "name": "Batch",
+  "name": "BatchSubject",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "batchId": {
+    "batchSubjectId": {
       "type": "Number",
       "id": true,
       "required": true,
@@ -15,39 +15,7 @@
       "scale": 0,
       "_selectable": false
     },
-    "name": {
-      "type": "String",
-      "required": true,
-      "length": 45,
-      "precision": null,
-      "scale": null,
-      "_selectable": false
-    },
-    "startDate": {
-      "type": "Date",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "_selectable": false
-    },
-    "endDate": {
-      "type": "Date",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "_selectable": false
-    },
-    "isActive": {
-      "type": "Boolean",
-      "required": true,
-      "length": null,
-      "precision": 3,
-      "scale": 0,
-      "_selectable": false
-    },
-    "schoolId": {
+    "batchId": {
       "type": "Number",
       "required": true,
       "length": null,
@@ -55,23 +23,45 @@
       "scale": 0,
       "_selectable": false
     },
-    "gradingType": {
-      "type": "String",
-      "required": false,
-      "length": 45,
+    "subjectId": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "_selectable": false
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": true,
+      "length": null,
       "precision": null,
       "scale": null,
-      "_selectable": true
+      "_selectable": false
+    },
+    "updatedAt": {
+      "type": "Date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "_selectable": false
     }
   },
   "validations": [],
   "relations": {
-   "school": {
+  "batch": {
       "type": "belongsTo",
-      "model": "School",
-      "foreignKey": "schoolId"
-      }
-   },
+      "model": "Batch",
+      "foreignKey": "batchId"
+      },
+  "subject" : {
+      "type": "belongsTo",
+      "model": "Subject",
+      "foreignKey": "subjectId"
+      }   
+      
+  },
   "acls": [],
   "methods": {}
 }

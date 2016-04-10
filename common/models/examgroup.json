@@ -1,12 +1,12 @@
 {
-  "name": "Batch",
+  "name": "ExamGroup",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "batchId": {
+    "examGroupId": {
       "type": "Number",
       "id": true,
       "required": true,
@@ -23,44 +23,51 @@
       "scale": null,
       "_selectable": false
     },
-    "startDate": {
-      "type": "Date",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "_selectable": false
-    },
-    "endDate": {
-      "type": "Date",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "_selectable": false
-    },
-    "isActive": {
-      "type": "Boolean",
-      "required": true,
-      "length": null,
-      "precision": 3,
-      "scale": 0,
-      "_selectable": false
-    },
-    "schoolId": {
+    "batchId": {
       "type": "Number",
-      "required": true,
+      "required": false,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "_selectable": false
+      "_selectable": true
     },
-    "gradingType": {
+    "examType": {
       "type": "String",
       "required": false,
       "length": 45,
       "precision": null,
       "scale": null,
+      "_selectable": true
+    },
+    "examGroupStartDate": {
+      "type": "Date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "_selectable": false
+    },
+    "examGroupEndDate": {
+      "type": "Date",
+      "required": true,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "_selectable": false
+    },
+    "schoolId": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "_selectable": true
+    },
+    "isFinalExam": {
+      "type": "Boolean",
+      "required": false,
+      "length": null,
+      "precision": 3,
+      "scale": 0,
       "_selectable": true
     }
   },
@@ -70,8 +77,14 @@
       "type": "belongsTo",
       "model": "School",
       "foreignKey": "schoolId"
+      },
+       "batch": {
+      "type": "belongsTo",
+      "model": "Batch",
+      "foreignKey": "batchId"
       }
-   },
+  
+  },
   "acls": [],
   "methods": {}
 }

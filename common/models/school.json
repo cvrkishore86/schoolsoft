@@ -5,26 +5,14 @@
   "options": {
     "validateUpsert": true
   },
-  "mysql": {
-    "schema": "schoolsoft",
-    "table": "school"
-  },
   "properties": {
-    "schoolid": {
+    "schoolId": {
       "type": "Number",
       "id": true,
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "mysql": {
-        "columnName": "schoolid",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "name": {
@@ -33,14 +21,6 @@
       "length": 100,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "name",
-        "dataType": "varchar",
-        "dataLength": 100,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "code": {
@@ -49,14 +29,6 @@
       "length": 45,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "code",
-        "dataType": "varchar",
-        "dataLength": 45,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
       "_selectable": true
     },
     "createdAt": {
@@ -65,14 +37,6 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "created_at",
-        "dataType": "datetime",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
       "_selectable": false
     },
     "updatedAt": {
@@ -81,32 +45,9 @@
       "length": null,
       "precision": null,
       "scale": null,
-      "mysql": {
-        "columnName": "updated_at",
-        "dataType": "datetime",
-        "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "N"
-      },
-      "_selectable": false
-    },
-    "adminId": {
-      "type": "Number",
-      "required": true,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "mysql": {
-        "columnName": "admin_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
       "_selectable": false
     }
+   
   },
   "validations": [],
   "relations": {},

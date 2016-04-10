@@ -228,14 +228,6 @@
       
       "_selectable": true
     },
-    "parentId": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "_selectable": true
-    },
     "createdAt": {
       "type": "Date",
       "required": false,
@@ -277,7 +269,18 @@
       "type": "belongsTo",
       "model": "School",
       "foreignKey": "schoolId"
+    },
+    "schooluser": {
+      "type": "belongsTo",
+      "model": "Schooluser",
+      "foreignKey": "userId"
+    },
+    "batch": {
+      "type": "belongsTo",
+      "model": "Batch",
+      "foreignKey": "batchId"
     }
+    
   },
   "acls": [],
   "methods": {}
