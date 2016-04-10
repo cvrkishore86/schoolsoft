@@ -95,7 +95,7 @@
       "scale": null,
       "_selectable": true
     },
-    "nationalityId": {
+    "nationality": {
       "type": "Number",
       "required": false,
       "length": null,
@@ -151,7 +151,7 @@
       "scale": null,
       "_selectable": true
     },
-    "countryId": {
+    "country": {
       "type": "Number",
       "required": false,
       "length": null,

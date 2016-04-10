@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'ngCookies']);
+var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'ngCookies','angularFileUpload']);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       $urlRouterProvider) {
     $stateProvider

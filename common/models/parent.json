@@ -95,7 +95,7 @@
       "scale": null,
       "_selectable": true
     },
-    "countryId": {
+    "country": {
       "type": "Number",
       "required": false,
       "length": null,

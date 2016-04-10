@@ -84,5 +84,9 @@
   "Schooluser": {
     "dataSource": "mysqlschool",
     "public": true
+  },
+  "container": {
+    "dataSource": "storage",
+    "public": true
   }
 }

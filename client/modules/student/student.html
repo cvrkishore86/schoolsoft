@@ -1,4 +1,5 @@
 <div  ng-include="'/modules/home/header.html'"></div> 
+
  <div class="container-fluid">
        
     
@@ -18,6 +19,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                            
                                 <div class="col-lg-6">
                                     <form role="form" ng-submit="addStudent()" method="POST"  novalidate="novalidate">
                                         <div class="form-group">
@@ -91,9 +93,9 @@
                                            
                                         </div> 
                                         <div class="form-group">
-                                            <label>Nationality id:</label>
-                                         <select name="nationalityId"ng-model="student.nationalityId"  class="form-control">
-                                                <option value="1">India</option>
+                                            <label>Nationality :</label>
+                                         <select name="nationalityI"ng-model="student.nationality"  class="form-control">
+                                                <option value="India">India</option>
                                             </select>
                                       </div>
                                        <div class="form-group">
@@ -127,9 +129,9 @@
                                            
                                         </div>
                                         <div class="form-group">
-                                            <label>Country id:</label>
-                                         <select name="countryId" ng-model="student.countryId"  class="form-control">
-                                                <option value="1">India</option>
+                                            <label>Country :</label>
+                                         <select name="country" ng-model="student.country"  class="form-control">
+                                                <option value="India">India</option>
                                             </select>
                                       </div>
                                       <div class="form-group">
@@ -155,8 +157,23 @@
                                         </div>
                                      <button type="submit" class="btn btn-default">Submit Button</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
+                                     </form>	
                                 </div>   
+                            	<div  ng-show="uploader.isHTML5" class = "col-lg-6"  ng-controller="UploadController" nv-file-drop uploader="uploader">
+                <!-- 3. nv-file-over | nv-file-over="className" -->
+                <div class="well my-drop-zone" nv-file-over uploader="uploader">
+                    Drop Student Photo here
+                </div>
+                <div ng-show="uploader.isHTML5" ng-thumb="{ file: uploader.queue[0]._file, height: 100 }"></div>
+                <input nv-file-select uploader="uploader" type="file"/>
+                  <button type="button" class="btn btn-success btn-xs"
+                                ng-click="uploader.queue[0].upload()"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span>
+                            Upload
+                        </button>
+            </div>
+                           
                             </div>
                         </div>    
                     </div>
