@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'ngCookies','angularFileUpload']);
+var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'ngCookies','angularFileUpload','angular.morris-chart']);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       $urlRouterProvider) {
     $stateProvider
@@ -17,14 +17,18 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       .state('createstudent', {
         url: '/createstudent',
     
-            templateUrl: 'modules/student/student.html',
+            templateUrl: 'modules/student/createstudent.html',
         controller: 'StudentCreateController',
         authenticate: true
       }).state('logout', {
         url: '/logout',
         controller: 'AuthLogoutController'
-      })
-      .state('studentlist', {
+      }).state('dashboard', {
+          url: '/dashboard',
+          templateUrl: 'modules/student/dashboard.html',
+          controller: 'StudentDashboardController',
+          authenticate: true
+        }).state('studentlist', {
         url: '/studentlist',
         templateUrl: 'modules/student/students.html',
         controller: 'StudentListController',

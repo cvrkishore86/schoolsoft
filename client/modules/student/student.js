@@ -34,4 +34,15 @@ app.controller('StudentListController', ['$scope', 'Student',  'userPersistenceS
     }
 
   }]);
+app.controller('StudentDashboardController', ['$scope', 'Student' ,'$rootScope',
+                                         function($scope, Student,$rootScope) {
+			var userId=$rootScope.currentUser.id;
+                                       
+                                       $scope.student = Student.findOne({filter : {where: {
+                                           userId: userId
+                                       }}});
+                                       
+                                    	 
+
+                                     }]);
 

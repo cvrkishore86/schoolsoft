@@ -1,0 +1,94 @@
+<div  ng-include="'/modules/home/header.html'"></div>
+
+<div class="container-fluid">
+
+
+	<div id="page-wrapper" >
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">{{student.firstName}} {{student.lastName}}  Dashboard</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+					</div>
+					<div class="row ">
+						<!-- normal -->
+					<div class="panel  col-lg-4 col-md-4">
+							<div class="panel-heading">
+						                             <h3><i class="glyphicon  glyphicon-user"></i>   {{student.firstName}}  {{student.lastName}}</h3>
+						      </div>
+						<div ng-if="student.photoFilename" class="ih-item circle effect13">
+							<a >
+								<div class="img">
+									<img ng-src="/api/containers/photo/download/{{student.photoFilename}}"  width="200px" height="150px" alt="img">
+								</div>
+								<div class="info">
+									<div class="info-back">
+										<h3>{{student.firstName}}  {{student.lastName}}</h3>
+										<p>Admission No  : {{student.admissionNo}}</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div ng-if="!student.photoFilename" class="ih-item circle effect13">
+							<a >
+								<div class="img">
+									<img src="/api/containers/photo/download/CB006.jpg"  width="200px" height="150px" alt="img">
+								</div>
+								<div class="info">
+									<div class="info-back">
+										<h3>Click Here</h3>
+										<p>To Upload Profile Picture</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<p>Date of Birth : {{student.dateOfBirth}}</p>
+						<p>Roll No  : {{student.rollNo}}</p>
+						</div>				<!-- end normal -->
+							  <div class="panel panel-default col-lg-4 col-md-4">
+				                        <div class="panel-heading">
+				                            <i class="fa fa-bar-chart-o fa-fw"></i> Attendance
+				                        </div>
+								<div donut-chart donut-data='[  {label: "Attendance", value: 28}, {label: "Absence",value: 2}]'
+									donut-colors='["#31C0BE", "#c7254e"]'
+									></div>
+								<!-- /.panel-body -->
+				                    </div>
+									
+							<div class="panel panel-default col-lg-4 col-md-4">
+				                        <div class="panel-heading">
+				                            <i class="fa fa-bar-chart-o fa-fw"></i> Overall Performance
+				                        </div>
+								<div donut-chart donut-data='[  {label: "English", value: 75}, {label: "Hindi",value: 75}
+																, {label: "Telugu",value: 40}, {label: "Maths",value: 100}
+																, {label: "Science",value: 50}, {label: "Social",value: 75}
+															]'
+									></div>
+								<!-- /.panel-body -->
+				                </div>
+				</div>
+					<div class="row ">
+							<div class="panel panel-default col-lg-12 col-md-12">
+				                        <div class="panel-heading">
+				                            <i class="fa fa-bar-chart-o fa-fw"></i> Marks Chart
+				                        </div>
+								<div bar-chart bar-data='[ { y: "English", a: 75, b: 65 },
+														    { y: "Hindi", a: 75,  b: 65 },
+														    { y: "Telugu", a: 50,  b: 40 },
+														    { y: "Maths", a: 100,  b: 90 },
+														    { y: "Science", a: 50,  b: 40 },
+														    { y: "Social", a: 75,  b: 65 }
+														]'
+										bar-x='y'
+										bar-y='["a", "b"]'
+										bar-labels='["Marks Scored", "Batch Average"]'
+										bar-colors='["#31C0BE", "#c7254e"]'>
+								</div>
+								<!-- /.panel-body -->
+				                </div>
+				</div>			
+<!-- /.row -->
+          
+</div>
+</div>
