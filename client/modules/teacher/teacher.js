@@ -1,33 +1,13 @@
 var app = angular.module('app');
 
-var baseUrl = 'http://localhost\\:3000';
-app.run([
-        'bootstrap3ElementModifier',
-        function (bootstrap3ElementModifier) {
-              bootstrap3ElementModifier.enableValidationStateIcons(true);
-       }]);
-
-app.controller('TeacherCreateController',['$state', '$scope','Teacher', 'userPersistenceService',  function($state,$scope, userPersistenceService,Teacher){
+app.controller('TeacherCreateController',['$state', '$scope','Teacher', '$rootScope', function($state,$scope, Teacher,$rootScope){
 
  
 
     $scope.addTeacher=function(){
-
+    	var teacher = Object.assign({'isActive' : 'true', 'createdAt' : new Date(), 'updatedAt' : new Date(), 'schoolId' : 1 , 'userId' : 2}, $scope.teacher, $rootScope.currentUser.schoolId);
        Teacher
-        .create({
-  "teacherId": $scope.teacher.teacherId,
-  "firstName": $scope.teacher.firstName,
-  "lastName": $scope.teacher.lastName,
-  "email" : $scope.teacher.email,
-  "admissionNo": "123456",
-  "admissionDate": "2016-04-06",
-  "rollNo": "123456",
-  
-  "dateOfBirth": "2016-04-06",
-  "gender": 1,
-  "phone1": "964222222"
-  
-})
+        .create(teacher)
         .$promise
         .then(function() {
           setTimeout(function() {
@@ -40,10 +20,9 @@ app.controller('TeacherCreateController',['$state', '$scope','Teacher', 'userPer
     }
 
 }])
-app.controller('TeacherListController', ['$scope', 'Teacher',  'userPersistenceService' ,'$rootScope',
-      function($scope, Teacher,userPersistenceService,$rootScope) {
-	$rootScope.currentUser =  userPersistenceService.getCookieData();
-    var schoolid=$rootScope.currentUser.schoolId;
+app.controller('TeacherListController', ['$scope', 'Teacher',  '$rootScope',
+      function($scope, Teacher,$rootScope) {
+	var schoolid=$rootScope.currentUser.schoolId;
     if ($rootScope.currentUser.admin) {
     $scope.teachers = Teacher.find();
     } else {

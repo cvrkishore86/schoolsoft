@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'ngCookies','angularFileUpload','angular.morris-chart']);
+var app = angular.module('app', ['ui.router','lbServices','jcs-autoValidate', 'ngCookies','angularFileUpload','chart.js']);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       $urlRouterProvider) {
     $stateProvider
@@ -37,15 +37,20 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
           url: '/createteacher',
           templateUrl: 'modules/teacher/teacher.html',
           controller: 'TeacherCreateController'
-        });
-    $urlRouterProvider.otherwise('header');
+        })
+        .state('teacherlist', {
+            url: '/teacherlist',
+            templateUrl: 'modules/teacher/teachers.html',
+            controller: 'TeacherListController'
+          });
   }])
   .run(['$rootScope', "$cookies",'$location','$state',
     function ($rootScope,$cookies, $location,$state) {
         // keep user logged in after page refresh
 	  $rootScope.currentUser =  $cookies.get("userName");
 	  
- 
+	  $rootScope.cssfile = 'sb-admin-2.css';
+	  
        $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in
     	   $rootScope.currentpage = $state.current.name;

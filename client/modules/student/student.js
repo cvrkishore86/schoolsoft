@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('StudentCreateController',['$state', '$scope','Student', 'userPersistenceService','$rootScope',  function($state,$scope, Student,userPersistenceService,$rootScope){
+app.controller('StudentCreateController',['$state', '$scope','Student', '$rootScope',  function($state,$scope, Student,$rootScope){
 
 	
 
@@ -21,8 +21,8 @@ app.controller('StudentCreateController',['$state', '$scope','Student', 'userPer
     }
 
 }])
-app.controller('StudentListController', ['$scope', 'Student',  'userPersistenceService' ,'$rootScope',
-      function($scope, Student,userPersistenceService,$rootScope) {
+app.controller('StudentListController', ['$scope', 'Student',  '$rootScope',
+      function($scope, Student,$rootScope) {
 
     var schoolid=$rootScope.currentUser.schoolId;
     if ($rootScope.currentUser.admin) {
@@ -40,9 +40,20 @@ app.controller('StudentDashboardController', ['$scope', 'Student' ,'$rootScope',
                                        
                                        $scope.student = Student.findOne({filter : {where: {
                                            userId: userId
-                                       }}});
+                                       } , include : ['batch']}});
                                        
-                                    	 
+                                       $scope.labels = ['Telugu', 'Hindi', 'English', 'Maths', 'Science', 'Social'];
+                                 	  $scope.series = ['Marks', 'Class Average'];
+
+                                 	  $scope.data = [
+                                 	    [65, 59, 80, 99, 56, 55],
+                                 	    [28, 48, 40, 19, 86, 27]
+                                 	  ]; 
+                                 	  
+                                 		  $scope.attendancelabels = ["Attendance", "Absence"];
+                                 		  $scope.attendanceValues = [28, 2];
+                                 		 $scope.markspielabels =['Telugu', 'Hindi', 'English', 'Maths', 'Science', 'Social'];
+                                 		  $scope.markspiedata = [65, 59, 80, 99, 56, 55];
 
                                      }]);
 

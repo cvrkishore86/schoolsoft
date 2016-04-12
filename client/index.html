@@ -14,11 +14,8 @@
     <script src= "/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src= "/bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
   	<script src= "/bower_components/angular-file-upload/dist/angular-file-upload.js"></script>
-  	<script src= "/bower_components/angular-morris-chart/src/angular-morris-chart.min.js"></script>
-  	<script src= "/bower_components/jquery/dist/jquery.min.js"></script>
-  	<script src= "/bower_components/raphael/raphael-min.js"></script>
-  	
-    <script src="./bower_components/morrisjs/morris.js" ></script>
+    <script src="/bower_components/Chart.js/Chart.js"></script>
+    <script src="/bower_components/angular-chart.js/dist/angular-chart.js"></script>
      <script src="/js/lb-services.js"></script>
      
      <script src="/js/app.js"></script>
@@ -29,6 +26,7 @@
      
     
     <script src="/modules/student/student.js"></script>
+    <script src="/modules/teacher/teacher.js"></script>
     <title>School Soft</title>
 
     <!-- Bootstrap Core CSS -->
@@ -41,12 +39,12 @@
     <link href="./dist/css/timeline.css" rel="stylesheet">
 	<link href="./dist/css/ihover.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="./dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="./bower_components/morrisjs/morris.css" rel="stylesheet">
     
 
+    <!-- Morris Charts CSS -->
+    <!-- <link href="./bower_components/morrisjs/morris.css" rel="stylesheet"> -->
+    
+	<link rel="stylesheet" href="/bower_components/angular-chart.js/dist/angular-chart.css">
     <!-- Custom Fonts -->
     <link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -56,7 +54,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body ng-app="app">
@@ -70,7 +67,6 @@
 
 
            
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -90,10 +86,10 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
+    <link ng-href="./dist/css/{{cssfile}}" rel="stylesheet">
 
 </body>
 </html>

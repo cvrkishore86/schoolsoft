@@ -192,24 +192,6 @@
       
       "_selectable": true
     },
-    "photoContentType": {
-      "type": "String",
-      "required": false,
-      "length": 10,
-      "precision": null,
-      "scale": null,
-      
-      "_selectable": true
-    },
-    "photoData": {
-      "type": "Binary",
-      "required": false,
-      "length": 65535,
-      "precision": null,
-      "scale": null,
-      
-      "_selectable": true
-    },
     "isSmsEnabled": {
       "type": "Number",
       "required": false,

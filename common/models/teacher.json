@@ -103,14 +103,6 @@
       "scale": null,
       "_selectable": true
     },
-    "photoFile": {
-      "type": "Binary",
-      "required": false,
-      "length": 65535,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
     "mobile": {
       "type": "String",
       "required": true,

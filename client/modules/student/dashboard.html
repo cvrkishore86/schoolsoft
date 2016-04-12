@@ -26,6 +26,8 @@
 									<div class="info-back">
 										<h3>{{student.firstName}}  {{student.lastName}}</h3>
 										<p>Admission No  : {{student.admissionNo}}</p>
+										
+										
 									</div>
 								</div>
 							</a>
@@ -43,16 +45,17 @@
 								</div>
 							</a>
 						</div>
-						<p>Date of Birth : {{student.dateOfBirth}}</p>
-						<p>Roll No  : {{student.rollNo}}</p>
+						<h4>Date of Birth : {{student.dateOfBirth | date:"dd-MMM-yyyy"}}</h4>
+						<h4>Roll No  : {{student.rollNo}}</h4>
+						<h4>Batch :{{student.batch.name}} </h4>
 						</div>				<!-- end normal -->
 							  <div class="panel panel-default col-lg-4 col-md-4">
 				                        <div class="panel-heading">
 				                            <i class="fa fa-bar-chart-o fa-fw"></i> Attendance
 				                        </div>
-								<div donut-chart donut-data='[  {label: "Attendance", value: 28}, {label: "Absence",value: 2}]'
-									donut-colors='["#31C0BE", "#c7254e"]'
-									></div>
+								<canvas id="doughnut" height="250px" class="chart chart-doughnut"
+  									chart-data="attendanceValues" chart-labels="attendancelabels" chart-colours="[ '#c7254e','#31C0BE' ]" chart-legend="true">
+								</canvas> 	
 								<!-- /.panel-body -->
 				                    </div>
 									
@@ -60,31 +63,30 @@
 				                        <div class="panel-heading">
 				                            <i class="fa fa-bar-chart-o fa-fw"></i> Overall Performance
 				                        </div>
-								<div donut-chart donut-data='[  {label: "English", value: 75}, {label: "Hindi",value: 75}
-																, {label: "Telugu",value: 40}, {label: "Maths",value: 100}
-																, {label: "Science",value: 50}, {label: "Social",value: 75}
-															]'
-									></div>
+								<canvas id="pie" class="chart chart-pie" height="230px"
+  											chart-data="markspiedata" chart-labels="markspielabels" chart-legend="true">
+  											adsada
+								</canvas> 
 								<!-- /.panel-body -->
 				                </div>
 				</div>
 					<div class="row ">
-							<div class="panel panel-default col-lg-12 col-md-12">
+					  <div class="panel panel-default col-lg-4 col-md-4">
+				                        <div class="panel-heading" height="250px">
+				                            <i class="fa fa-money fa-fw"></i> Student Details
+				                        </div>
+										<h4>Date of Birth : {{student.dateOfBirth}}</h4>
+										<h4>Roll No  : {{student.rollNo}}</h4>
+										<h4>Batch :{{student.batch.name}} </h4>
+				                    </div>
+					
+							<div class="panel panel-default col-lg-8 col-md-8">
 				                        <div class="panel-heading">
 				                            <i class="fa fa-bar-chart-o fa-fw"></i> Marks Chart
 				                        </div>
-								<div bar-chart bar-data='[ { y: "English", a: 75, b: 65 },
-														    { y: "Hindi", a: 75,  b: 65 },
-														    { y: "Telugu", a: 50,  b: 40 },
-														    { y: "Maths", a: 100,  b: 90 },
-														    { y: "Science", a: 50,  b: 40 },
-														    { y: "Social", a: 75,  b: 65 }
-														]'
-										bar-x='y'
-										bar-y='["a", "b"]'
-										bar-labels='["Marks Scored", "Batch Average"]'
-										bar-colors='["#31C0BE", "#c7254e"]'>
-								</div>
+								<canvas id="bar" height="120px" class="chart chart-bar"
+  							chart-data="data" chart-labels="labels" chart-series="series" chart-colours="[ { fillColor: '#31C0BE' }, { fillColor: '#c7254e' } ]" chart-legend="true">
+					</canvas>
 								<!-- /.panel-body -->
 				                </div>
 				</div>			
