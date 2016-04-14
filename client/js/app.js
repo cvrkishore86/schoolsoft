@@ -42,7 +42,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
             url: '/teacherlist',
             templateUrl: 'modules/teacher/teachers.html',
             controller: 'TeacherListController'
-          });
+          }).state('createparents', {
+              url: '/createparents',
+              templateUrl: 'modules/parent/createparents.html',
+              controller: 'StudentCreateController'
+            });
   }])
   .run(['$rootScope', "$cookies",'$location','$state',
     function ($rootScope,$cookies, $location,$state) {

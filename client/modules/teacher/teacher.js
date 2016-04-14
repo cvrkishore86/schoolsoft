@@ -2,7 +2,7 @@ var app = angular.module('app');
 
 app.controller('TeacherCreateController',['$state', '$scope','Teacher', 'School', '$rootScope', function($state,$scope, Teacher, School,$rootScope){
 
-	$scope.teacher = {'isActive' : 'true', 'createdAt' : new Date(), 'updatedAt' : new Date(), 'schoolId' : $rootScope.currentUser.schoolId , 'userId' : 2};
+	$scope.teacher = {'isActive' : 'true', 'createdAt' : new Date(), 'updatedAt' : new Date(), 'schoolId' : $rootScope.currentUser.schoolId , 'createdBy' : $rootScope.currentUser.userId};
 	if ($rootScope.currentUser.admin){
 		$scope.schools = School.find();
 	}

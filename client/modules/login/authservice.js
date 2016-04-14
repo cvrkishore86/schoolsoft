@@ -10,7 +10,7 @@ angular
         .then(function(response) {
         	
           currentUser = {
-            id: response.user.id,
+            userId: response.user.userId,
             tokenId: response.id,
             email: email,
             schoolId: response.user.schoolId,

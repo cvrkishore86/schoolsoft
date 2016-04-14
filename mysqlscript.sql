@@ -46,35 +46,34 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`schooluser` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`schooluser` (
-`userId` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(100) NOT NULL,
-  `firstName` VARCHAR(100) NOT NULL,
-  `lastName` VARCHAR(100) NULL DEFAULT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `admin` TINYINT(4) NOT NULL,
-  `student` TINYINT(4) NOT NULL,
-  `employee` TINYINT(4) NOT NULL,
-  `schoolId` INT(11) NULL DEFAULT NULL,
-  `realm` VARCHAR(512) NULL DEFAULT NULL,
-  `password` VARCHAR(512) NOT NULL,
-  `credentials` TEXT NULL DEFAULT NULL,
-  `challenges` TEXT NULL DEFAULT NULL,
-  `emailVerified` TINYINT(1) NULL DEFAULT NULL,
-  `verificationToken` VARCHAR(512) NULL DEFAULT NULL,
-  `status` VARCHAR(512) NULL DEFAULT NULL,
-  `created` DATETIME NULL DEFAULT NULL,
-  `lastUpdated` DATETIME NULL DEFAULT NULL,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `admin` tinyint(4) NOT NULL,
+  `student` tinyint(4) NOT NULL,
+  `employee` tinyint(4) NOT NULL,
+  `schoolId` int(11) DEFAULT NULL,
+  `realm` varchar(512) DEFAULT NULL,
+  `password` varchar(512) NOT NULL,
+  `credentials` text,
+  `challenges` text,
+  `emailVerified` tinyint(1) DEFAULT NULL,
+  `verificationToken` varchar(512) DEFAULT NULL,
+  `status` varchar(512) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `lastUpdated` datetime DEFAULT NULL,
+  `createdBy` int(11) NOT NULL,
   PRIMARY KEY (`userId`),
-  INDEX `email` (`email` ASC),
-  INDEX `schoolindex` (`schoolId` ASC),
-  CONSTRAINT `userschoolfk`
-    FOREIGN KEY (`schoolId`)
-    REFERENCES `schoolsoft`.`school` (`schoolId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1
-DEFAULT CHARACTER SET = latin1;
+  KEY `email` (`email`),
+  KEY `schoolindex` (`schoolId`),
+  KEY `usercreatedBy_idx` (`createdBy`),
+  CONSTRAINT `usercreatedBy` FOREIGN KEY (`createdBy`) REFERENCES `schooluser` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `userschoolfk` FOREIGN KEY (`schoolId`) REFERENCES `school` (`schoolId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
 
 
 -- -----------------------------------------------------
@@ -101,49 +100,27 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`parent` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`parent` (
-  `paretnId` INT(11) NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(45) NOT NULL,
-  `lastName` VARCHAR(45) NOT NULL,
-  `relation` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `officePhone1` VARCHAR(45) NULL DEFAULT NULL,
-  `officePhone2` VARCHAR(45) NULL DEFAULT NULL,
-  `mobilePhone` VARCHAR(45) NULL DEFAULT NULL,
-  `officeAddress` VARCHAR(100) NULL DEFAULT NULL,
-  `city` VARCHAR(45) NULL DEFAULT NULL,
-  `state` VARCHAR(45) NULL DEFAULT NULL,
-  `country` VARCHAR(100) NULL DEFAULT NULL,
-  `dob` DATE NULL DEFAULT NULL,
-  `occupation` VARCHAR(45) NULL DEFAULT NULL,
-  `education` VARCHAR(100) NULL DEFAULT NULL,
-  `createdAt` DATETIME NOT NULL,
-  `updatedAt` DATETIME NOT NULL,
-  `schoolId` INT(11) NOT NULL, /* what is this column do we require schoolid and user id , i think studnet id is sufficinet TODO*/
-  `userId` INT(11)  NULL DEFAULT NULL,
-  `studentId` INT(11) NULL DEFAULT NULL,
+  `paretnId` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) NOT NULL,
+  `lastName` varchar(45) NOT NULL,
+  `relation` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `mobile` varchar(45) NOT NULL,
+  `mobile2` varchar(45) DEFAULT NULL,
+  `officeAddress` varchar(100) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `occupation` varchar(45) DEFAULT NULL,
+  `education` varchar(100) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `schoolId` int(11) NOT NULL,
+  `studentId` int(11) DEFAULT NULL,
   PRIMARY KEY (`paretnId`),
-  INDEX `studentIdx` (`studentId` ASC),
-  INDEX `userIdx` (`userId` ASC),
-  INDEX `schoolIdx` (`schoolId` ASC),
-  CONSTRAINT `school`
-    FOREIGN KEY (`schoolId`)
-    REFERENCES `schoolsoft`.`school` (`schoolId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `student`
-    FOREIGN KEY (`studentId`)
-    REFERENCES `schoolsoft`.`student` (`studentId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `user`
-    FOREIGN KEY (`userId`)
-    REFERENCES `schoolsoft`.`schooluser` (`userId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1
-DEFAULT CHARACTER SET = latin1;
-
+  KEY `studentIdx` (`studentId`),
+  KEY `schoolIdx` (`schoolId`),
+  CONSTRAINT `school` FOREIGN KEY (`schoolId`) REFERENCES `school` (`schoolId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `student` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`batch`
@@ -176,7 +153,7 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`student` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`student` (
- `studentId` int(11) NOT NULL AUTO_INCREMENT,
+  `studentId` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(100) NOT NULL,
   `lastName` varchar(4100) NOT NULL,
   `admissionNo` varchar(100) NOT NULL,
@@ -197,17 +174,19 @@ CREATE TABLE IF NOT EXISTS `schoolsoft`.`student` (
   `updatedAt` datetime DEFAULT NULL,
   `schoolId` int(11) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
+  `createdBy` int(11) NOT NULL,
   PRIMARY KEY (`studentId`),
   UNIQUE KEY `studentId_UNIQUE` (`studentId`),
   KEY `schoolId` (`schoolId`),
   KEY `firstname` (`firstName`,`lastName`(767)),
   KEY `userid_idx` (`userId`),
   KEY `student_batch_pk_idx` (`batchId`),
+  KEY `createdBy_idx` (`createdBy`),
+  CONSTRAINT `createdBy` FOREIGN KEY (`createdBy`) REFERENCES `schooluser` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `schoolstundent` FOREIGN KEY (`schoolId`) REFERENCES `school` (`schoolId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `student_batch_pk` FOREIGN KEY (`batchId`) REFERENCES `batch` (`batchId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `userid` FOREIGN KEY (`userId`) REFERENCES `schooluser` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`attendance`
@@ -451,41 +430,35 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`teacher` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`teacher` (
-  `teacherId` INT(11) NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(45) NOT NULL,
-  `lastName` VARCHAR(45) NOT NULL,
-  `gender` TINYINT(4) NOT NULL DEFAULT '1',
-  `qualification` VARCHAR(100) NOT NULL,
-  `experienceDetail` VARCHAR(200) NULL DEFAULT NULL,
-  `experienceInYears` DOUBLE NOT NULL,
-  `isActive` TINYINT(4) NOT NULL DEFAULT '1',
-  `dateOfBirth` DATE NOT NULL,
-  `bloodGroup` VARCHAR(10) NOT NULL,
-  `homeAddress` VARCHAR(100) NOT NULL,
-  `photoFilename` VARCHAR(45) NULL DEFAULT NULL,
-  `mobile` VARCHAR(45) NOT NULL,
-  `mobile2` VARCHAR(45) NULL DEFAULT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `createdAt` DATE NOT NULL,
-  `updatedAt` DATE NOT NULL,
-  `schoolId` INT(11) NOT NULL,
-  `userId` INT(11) NOT NULL,
+  `teacherId` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) NOT NULL,
+  `lastName` varchar(45) NOT NULL,
+  `gender` tinyint(4) NOT NULL DEFAULT '1',
+  `qualification` varchar(100) NOT NULL,
+  `experienceDetail` varchar(200) DEFAULT NULL,
+  `experienceInYears` double NOT NULL,
+  `isActive` tinyint(4) NOT NULL DEFAULT '1',
+  `dateOfBirth` date NOT NULL,
+  `bloodGroup` varchar(10) NOT NULL,
+  `homeAddress` varchar(100) NOT NULL,
+  `photoFilename` varchar(45) DEFAULT NULL,
+  `mobile` varchar(45) NOT NULL,
+  `mobile2` varchar(45) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `createdAt` date NOT NULL,
+  `updatedAt` date NOT NULL,
+  `schoolId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `createdBy` int(11) NOT NULL,
   PRIMARY KEY (`teacherId`),
-  INDEX `teacherschoolpk_idx` (`schoolId` ASC),
-  INDEX `teacheruserfk_idx` (`userid` ASC),
-  CONSTRAINT `teacherschoolpk`
-    FOREIGN KEY (`schoolId`)
-    REFERENCES `schoolsoft`.`school` (`schoolId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `teacheruserfk`
-    FOREIGN KEY (`userid`)
-    REFERENCES `schoolsoft`.`schooluser` (`userId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1
-DEFAULT CHARACTER SET = latin1;
+  KEY `teacherschoolpk_idx` (`schoolId`),
+  KEY `teacheruserfk_idx` (`userId`),
+  KEY `createdByUser_idx` (`createdBy`),
+  CONSTRAINT `createdByUser` FOREIGN KEY (`createdBy`) REFERENCES `schooluser` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `teacherschoolpk` FOREIGN KEY (`schoolId`) REFERENCES `school` (`schoolId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `teacheruserfk` FOREIGN KEY (`userId`) REFERENCES `schooluser` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
 
 
 -- -----------------------------------------------------

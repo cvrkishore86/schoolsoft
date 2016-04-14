@@ -1,0 +1,132 @@
+<div ng-include="'/modules/home/header.html'"></div>
+
+<div class="container-fluid">
+
+
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Parent Details</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">Student</div>
+			<div class="col-lg-4">Student dropdown</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">No Of Parents</div>
+			<div class="col-lg-4">
+			<select class="form-control"  ng-model="noofparents" ng-change="setParents()" >
+                                            		 	<option value="1">One</option>
+                                            		 	<option value="2">Two</option>
+                                            		 	<option value="3">Three</option>
+             </select>
+             </div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					
+					<div class="panel-body">
+						<form role="form" ng-submit="addParents()" method="POST"
+							novalidate="novalidate">
+							
+							<div class="table-responsive"ng-repeat="parent in parents track by $index" >
+							<h4 class="page-header">Parent {{$index+1}} details</h4>
+								<table class="table table-bordered" >
+									
+									<tbody>
+										<tr>
+											<td>
+												<div class="form-group">
+													<label>Relation :</label> 
+													<select class="form-control"  ng-model="parent.relation" >
+                                            		 	<option value="Father">Father</option>
+                                            		 	<option value="Mother">Mother</option>
+                                            		 	<option value="Guardian">Guardian</option>
+                                            		 </select>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>First Name:</label> <input name="firstName"
+														ng-model="parent.firstName" class="form-control" required>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>Last Name:</label> <input name="lastName"
+														ng-model="parent.lastName" class="form-control" required>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>E
+													mail:</label> <input name="email"
+														ng-model="parent.email" class="form-control" required>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>Date of Birth:</label> 
+													 <input name="dateOfBirth" ng-model="parent.dateOfBirth" type="date" class="form-control" required>
+
+												</div>
+											</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="form-group">
+													<label>Mobile :</label> <input name="mobile"
+														ng-model="parent.mobile" class="form-control" required>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>Alternate No:</label> <input name="mobile2"
+														ng-model="parent.mobile2" class="form-control" required>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>Office Address:</label>
+													<textarea name="officeAddress"ng-model="parent.officeAddress" class="form-control"></textarea>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>Occupation:</label> <input name="occupation"
+														ng-model="parent.occupation" class="form-control" required>
+
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<label>Education:</label> <input name="education"
+														ng-model="parent.education" class="form-control" required>
+
+												</div>
+											</td>
+										</tr>
+										 
+									</tbody>
+								</table>
+							</div>
+							<button type="submit" class="btn btn-default">Submit Button</button>
+                                        <button type="reset" class="btn btn-default">Reset Button</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

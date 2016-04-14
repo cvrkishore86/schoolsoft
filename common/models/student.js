@@ -16,14 +16,13 @@ module.exports = function(Student) {
   "created": new Date(),
   "lastUpdated": new Date(),
   "schoolId" : student.schoolId,
+  "createdBy": student.createdBy,
   "password" : student.firstName+"001"
 }, function(err, schoolUser) {
 
           if (err) {
         	  
-        	  var err = new Error("Email already exists cannot create School User");
         	  err.statusCode = 400;
-        	  console.log(err.toString());
         	  next(err);
         	  return console.log(err);
           }

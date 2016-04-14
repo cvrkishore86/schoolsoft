@@ -10,19 +10,18 @@ module.exports = function(Teacher) {
 		  "lastName": teacher.lastName,
 		  "email": teacher.email,
 		  "admin": 0,
-		  "student": 1,
-		  "employee": 0,
+		  "student": 0,
+		  "employee": 1,
 		  "created": new Date(),
 		  "lastUpdated": new Date(),
 		  "schoolId" : teacher.schoolId,
+		  "createdBy": teacher.createdBy,
 		  "password" : teacher.firstName+"001"
 		}, function(err, schoolUser) {
 
 			if (err) {
 	        	  
-	        	  var err = new Error("Email already exists cannot create School User");
 	        	  err.statusCode = 400;
-	        	  console.log(err.toString());
 	        	  next(err);
 	        	  return console.log(err);
 	          }

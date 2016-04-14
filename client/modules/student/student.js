@@ -1,19 +1,39 @@
 var app = angular.module('app');
 
-app.controller('StudentCreateController',['$state', '$scope','Student','School', '$rootScope',  function($state,$scope, Student,School, $rootScope){
-
+app.controller('StudentCreateController',['$state', '$scope','Student','School', 'Parent','$rootScope',  function($state,$scope, Student,School,Parent, $rootScope){
+	$scope.parents = new Array(0);
 	if ($rootScope.currentUser.admin){
 		$scope.schools = School.find();
 	}
 	
 
+		$scope.setParents = function() {
+								switch ($scope.noofparents) {
+								case '1':
+									$scope.parents = [ new Parent() ];
+									break;
+								case '2':
+									$scope.parents = [ new Parent(),
+											new Parent() ];
+									break;
+								case '3':
+									$scope.parents = [ new Parent(),
+											new Parent(), new Parent() ];
+									break;
+								default:
+									$scope.parents = [];
+									break;
+								}
+			}
+
     $scope.addStudent=function(){
     	if ($scope.student.schoolId == null) {
     		$scope.student.schoolId = $rootScope.currentUser.schoolId;
     	}
-    	 console.log($scope.student.schoolId)
+    	$scope.student.createdBy = $rootScope.currentUser.userId;
+    	
     	var studentobj = Object.assign({}, $scope.student);
-    	console.log($scope.student);
+    	console.log(studentobj);
        Student
         .create(studentobj)
         .$promise
@@ -25,6 +45,10 @@ app.controller('StudentCreateController',['$state', '$scope','Student','School',
         });
   
        
+    }
+    
+    $scope.addParents = function() {
+    	console.log($scope.parents);
     }
 
 }])

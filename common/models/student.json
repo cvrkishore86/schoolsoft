@@ -180,6 +180,14 @@
       "scale": 0,
       
       "_selectable": true
+    },
+    "createdBy": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "_selectable": false
     }
   },
   "validations": [],

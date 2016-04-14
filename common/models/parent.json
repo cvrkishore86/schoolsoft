@@ -47,7 +47,7 @@
       "scale": null,
       "_selectable": false
     },
-    "officePhone1": {
+    "mobile": {
       "type": "String",
       "required": false,
       "length": 45,
@@ -55,15 +55,7 @@
       "scale": null,
       "_selectable": true
     },
-    "officePhone2": {
-      "type": "String",
-      "required": false,
-      "length": 45,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "mobilePhone": {
+    "mobile2": {
       "type": "String",
       "required": false,
       "length": 45,
@@ -77,30 +69,6 @@
       "length": 100,
       "precision": null,
       "scale": null,
-      "_selectable": true
-    },
-    "city": {
-      "type": "String",
-      "required": false,
-      "length": 45,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "state": {
-      "type": "String",
-      "required": false,
-      "length": 45,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "country": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
       "_selectable": true
     },
     "dob": {
@@ -144,14 +112,6 @@
       "_selectable": false
     },
     "schoolId": {
-      "type": "Number",
-      "required": true,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "_selectable": false
-    },
-    "userId": {
       "type": "Number",
       "required": true,
       "length": null,
