@@ -7,6 +7,23 @@
 body {
     background-color: white;
 }
+
+.mycard {
+border: 1px solid #ccc	;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0
+		rgba(0, 0, 0, 0.12) !important;
+margin-bottom: 4px;		
+text-align: center;
+}
+.mycard:hover {
+box-shadow: 0 24px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0
+		rgba(0, 0, 0, 0.22) !important
+}
+
+.pic {
+    margin:auto;
+}
+
 a {
     color: white;
 }
@@ -405,3 +422,4 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+

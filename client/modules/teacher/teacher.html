@@ -18,7 +18,9 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+                               
                                     <form role="form" ng-submit="addTeacher()" method="POST"  novalidate="novalidate">
+                                    
                                         <div class="form-group">
                                             <label>First Name:</label>
                                             <input name="FirstName"ng-model="teacher.firstName"class="form-control" required>
@@ -28,6 +30,12 @@
                                             <label>Last Name:</label>
                                             <input name="lastName" ng-model="teacher.lastName" class="form-control" required>
                                             
+                                        </div>
+                                        <div  class="form-group" ng-if="currentUser.admin">
+                                            <label>School {{teacher.schoolId}}:</label>
+                                            <select class="form-control"  ng-model="teacher.schoolId" >
+                                             <option  ng-repeat="school in schools" value="{{school.schoolId}}">{{school.name}}</option>
+                                             </select>
                                         </div>
                                         <div class="form-group">
                                              <label>Gender</label>

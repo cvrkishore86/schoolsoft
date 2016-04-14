@@ -4,12 +4,12 @@ angular
 
 		return {
 			setCookieData: function(username) {
-				userName = username;
-				$cookies.put("userName", username);
+				
+				$cookies.put("userName", JSON.stringify(username));
 			},
 			getCookieData: function() {
 				userName = $cookies.get("userName");
-				return userName;
+				return angular.fromJson(userName);
 			},
 			clearCookieData: function() {
 				userName = "";

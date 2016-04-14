@@ -1,96 +1,119 @@
-<div  ng-include="'/modules/home/header.html'"></div>
+<div ng-include="'/modules/home/header.html'"></div>
 
 <div class="container-fluid">
 
 
-	<div id="page-wrapper" >
+	<div id="page-wrapper">
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">{{student.firstName}} {{student.lastName}}  Dashboard</h1>
+				<h1 class="page-header">{{student.firstName}}
+					{{student.lastName}} Dashboard</h1>
 			</div>
 			<!-- /.col-lg-12 -->
+		</div>
+		<div class="row">
+			<!-- normal -->
+
+			<div class="col-lg-4 col-md-4">
+				<div class="mycard">
+					<div class="panel-heading">
+						<h3>
+							<i class="glyphicon  glyphicon-user"></i> {{student.firstName}}
+							{{student.lastName}}
+						</h3>
 					</div>
-					<div class="row ">
-						<!-- normal -->
-					<div class="panel  col-lg-4 col-md-4">
-							<div class="panel-heading">
-						                             <h3><i class="glyphicon  glyphicon-user"></i>   {{student.firstName}}  {{student.lastName}}</h3>
-						      </div>
-						<div ng-if="student.photoFilename" class="ih-item circle effect13">
-							<a >
-								<div class="img">
-									<img ng-src="/api/containers/photo/download/{{student.photoFilename}}"  width="200px" height="150px" alt="img">
+					<div ng-if="student.photoFilename" class="pic ih-item circle effect13">
+						<a>
+							<div class="img">
+								<img
+									ng-src="/api/containers/photo/download/{{student.photoFilename}}"
+									width="200px" height="150px" alt="img">
+							</div>
+							<div class="info">
+								<div class="info-back">
+									<h3>{{student.firstName}} {{student.lastName}}</h3>
+									<p>Admission No : {{student.admissionNo}}</p>
+
+
 								</div>
-								<div class="info">
-									<div class="info-back">
-										<h3>{{student.firstName}}  {{student.lastName}}</h3>
-										<p>Admission No  : {{student.admissionNo}}</p>
-										
-										
-									</div>
+							</div>
+						</a>
+
+					</div>
+					<div ng-if="!student.photoFilename" class="pic ih-item circle effect13">
+						<a>
+							<div class="img">
+								<img src="/api/containers/photo/download/CB006.jpg"
+									width="200px" height="150px" alt="img">
+							</div>
+							<div class="info">
+								<div class="info-back">
+									<h3>Click Here</h3>
+									<p>To Upload Profile Picture</p>
 								</div>
-							</a>
-						</div>
-						<div ng-if="!student.photoFilename" class="ih-item circle effect13">
-							<a >
-								<div class="img">
-									<img src="/api/containers/photo/download/CB006.jpg"  width="200px" height="150px" alt="img">
-								</div>
-								<div class="info">
-									<div class="info-back">
-										<h3>Click Here</h3>
-										<p>To Upload Profile Picture</p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<h4>Date of Birth : {{student.dateOfBirth | date:"dd-MMM-yyyy"}}</h4>
-						<h4>Roll No  : {{student.rollNo}}</h4>
-						<h4>Batch :{{student.batch.name}} </h4>
-						</div>				<!-- end normal -->
-							  <div class="panel panel-default col-lg-4 col-md-4">
-				                        <div class="panel-heading">
-				                            <i class="fa fa-bar-chart-o fa-fw"></i> Attendance
-				                        </div>
-								<canvas id="doughnut" height="250px" class="chart chart-doughnut"
-  									chart-data="attendanceValues" chart-labels="attendancelabels" chart-colours="[ '#c7254e','#31C0BE' ]" chart-legend="true">
-								</canvas> 	
-								<!-- /.panel-body -->
-				                    </div>
-									
-							<div class="panel panel-default col-lg-4 col-md-4">
-				                        <div class="panel-heading">
-				                            <i class="fa fa-bar-chart-o fa-fw"></i> Overall Performance
-				                        </div>
-								<canvas id="pie" class="chart chart-pie" height="230px"
-  											chart-data="markspiedata" chart-labels="markspielabels" chart-legend="true">
-  											adsada
-								</canvas> 
-								<!-- /.panel-body -->
-				                </div>
+							</div>
+						</a>
+					</div>
+					<h4>Date of Birth : {{student.dateOfBirth |
+						date:"dd-MMM-yyyy"}}</h4>
+					<h4>Roll No : {{student.rollNo}}</h4>
+					<h4>Batch :{{student.batch.name}}</h4>
 				</div>
-					<div class="row ">
-					  <div class="panel panel-default col-lg-4 col-md-4">
-				                        <div class="panel-heading" height="250px">
-				                            <i class="fa fa-money fa-fw"></i> Student Details
-				                        </div>
-										<h4>Date of Birth : {{student.dateOfBirth}}</h4>
-										<h4>Roll No  : {{student.rollNo}}</h4>
-										<h4>Batch :{{student.batch.name}} </h4>
-				                    </div>
-					
-							<div class="panel panel-default col-lg-8 col-md-8">
-				                        <div class="panel-heading">
-				                            <i class="fa fa-bar-chart-o fa-fw"></i> Marks Chart
-				                        </div>
-								<canvas id="bar" height="120px" class="chart chart-bar"
-  							chart-data="data" chart-labels="labels" chart-series="series" chart-colours="[ { fillColor: '#31C0BE' }, { fillColor: '#c7254e' } ]" chart-legend="true">
+			</div>
+			<!-- end normal -->
+			<div class="col-lg-4 col-md-4">
+				<div class="mycard">
+					<div class="panel-heading">
+						<i class="fa fa-bar-chart-o fa-fw"></i> Attendance
+					</div>
+					<canvas id="doughnut" height="250px" class="chart chart-doughnut"
+						chart-data="attendanceValues" chart-labels="attendancelabels"
+						chart-colours="[ '#c7254e','#31C0BE' ]" chart-legend="true">
+								</canvas>
+					<!-- /.panel-body -->
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4">
+				<div class="mycard">
+					<div class="panel-heading">
+						<i class="fa fa-bar-chart-o fa-fw"></i> Overall Performance
+					</div>
+					<canvas id="pie" class="chart chart-pie" height="230px"
+						chart-data="markspiedata" chart-labels="markspielabels"
+						chart-legend="true">
+  											
+								</canvas>
+					<!-- /.panel-body -->
+				</div>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-lg-4 col-md-4">
+				<div class="mycard">
+					<div class="panel-heading" height="250px">
+						<i class="fa fa-money fa-fw"></i> Student Details
+					</div>
+					<h4>Date of Birth : {{student.dateOfBirth}}</h4>
+					<h4>Roll No : {{student.rollNo}}</h4>
+					<h4>Batch :{{student.batch.name}}</h4>
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-8">
+				<div class="mycard">
+					<div class="panel-heading">
+						<i class="fa fa-bar-chart-o fa-fw"></i> Marks Chart
+					</div>
+					<canvas id="bar" height="120px" class="chart chart-bar"
+						chart-data="data" chart-labels="labels" chart-series="series"
+						chart-colours="[ { fillColor: '#31C0BE' }, { fillColor: '#c7254e' } ]"
+						chart-legend="true">
 					</canvas>
-								<!-- /.panel-body -->
-				                </div>
-				</div>			
-<!-- /.row -->
-          
-</div>
+					<!-- /.panel-body -->
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
+
+	</div>
 </div>

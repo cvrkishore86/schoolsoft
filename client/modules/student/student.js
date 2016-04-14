@@ -1,12 +1,19 @@
 var app = angular.module('app');
 
-app.controller('StudentCreateController',['$state', '$scope','Student', '$rootScope',  function($state,$scope, Student,$rootScope){
+app.controller('StudentCreateController',['$state', '$scope','Student','School', '$rootScope',  function($state,$scope, Student,School, $rootScope){
 
+	if ($rootScope.currentUser.admin){
+		$scope.schools = School.find();
+	}
 	
 
     $scope.addStudent=function(){
-    	
-    	var studentobj = Object.assign({}, $scope.student, $rootScope.currentUser.schoolId);
+    	if ($scope.student.schoolId == null) {
+    		$scope.student.schoolId = $rootScope.currentUser.schoolId;
+    	}
+    	 console.log($scope.student.schoolId)
+    	var studentobj = Object.assign({}, $scope.student);
+    	console.log($scope.student);
        Student
         .create(studentobj)
         .$promise
@@ -23,8 +30,8 @@ app.controller('StudentCreateController',['$state', '$scope','Student', '$rootSc
 }])
 app.controller('StudentListController', ['$scope', 'Student',  '$rootScope',
       function($scope, Student,$rootScope) {
-
     var schoolid=$rootScope.currentUser.schoolId;
+    
     if ($rootScope.currentUser.admin) {
     $scope.students = Student.find();
     } else {

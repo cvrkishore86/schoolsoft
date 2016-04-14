@@ -176,59 +176,37 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `schoolsoft`.`student` ;
 
 CREATE TABLE IF NOT EXISTS `schoolsoft`.`student` (
- `studentId` INT(11) NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(100) NOT NULL,
-  `lastName` VARCHAR(4100) NOT NULL,
-  `admissionNo` VARCHAR(100) NOT NULL,
-  `admissionDate` DATE NOT NULL,
-  `rollNo` VARCHAR(100) NOT NULL,
-  `batchId` INT(11) NULL DEFAULT NULL,
-  `dateOfBirth` DATE NOT NULL,
-  `gender` TINYINT(4) NOT NULL,
-  `bloodGroup` VARCHAR(10) NULL DEFAULT NULL,
-  `birthPlace` VARCHAR(100) NULL DEFAULT NULL,
-  `nationality` VARCHAR(100) NULL DEFAULT NULL,
-  `language` VARCHAR(100) NULL DEFAULT NULL,
-  `religion` VARCHAR(100) NULL DEFAULT NULL,
-  `address` VARCHAR(200) NULL DEFAULT NULL,
-  `city` VARCHAR(100) NULL DEFAULT NULL,
-  `state` VARCHAR(100) NULL DEFAULT NULL,
-  `pinCode` VARCHAR(100) NULL DEFAULT NULL,
-  `country` VARCHAR(100) NULL DEFAULT NULL,
-  `phone1` VARCHAR(45) NOT NULL,
-  `phone2` VARCHAR(45) NULL DEFAULT NULL,
-  `email` VARCHAR(100) NULL DEFAULT NULL,
-  `photoFilename` VARCHAR(45) NULL DEFAULT NULL,
-  `isSmsEnabled` TINYINT(4) NULL DEFAULT '1',
-  `status` VARCHAR(45) NULL DEFAULT 'ACTIVE',
-  `createdAt` DATETIME NULL DEFAULT NULL,
-  `updatedAt` DATETIME NULL DEFAULT NULL,
-  `schoolId` INT(11) NULL DEFAULT NULL,
-  `userId` INT(11) NULL DEFAULT NULL,
+ `studentId` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(4100) NOT NULL,
+  `admissionNo` varchar(100) NOT NULL,
+  `admissionDate` date NOT NULL,
+  `rollNo` varchar(100) NOT NULL,
+  `batchId` int(11) DEFAULT NULL,
+  `dateOfBirth` date NOT NULL,
+  `gender` tinyint(4) NOT NULL,
+  `bloodGroup` varchar(10) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `phone1` varchar(45) NOT NULL,
+  `phone2` varchar(45) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `photoFilename` varchar(45) DEFAULT NULL,
+  `isSmsEnabled` tinyint(4) DEFAULT '1',
+  `status` varchar(45) DEFAULT 'ACTIVE',
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `schoolId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`studentId`),
-  UNIQUE INDEX `studentId_UNIQUE` (`studentId` ASC),
-  INDEX `schoolId` (`schoolId` ASC),
-  INDEX `firstname` (`firstName` ASC, `lastName`(767) ASC),
-  INDEX `userid_idx` (`userId` ASC),
-  INDEX `student_batch_pk_idx` (`batchId` ASC),
-  CONSTRAINT `schoolstundent`
-    FOREIGN KEY (`schoolId`)
-    REFERENCES `schoolsoft`.`school` (`schoolId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `student_batch_pk`
-    FOREIGN KEY (`batchId`)
-    REFERENCES `schoolsoft`.`batch` (`batchId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `userid`
-    FOREIGN KEY (`userId`)
-    REFERENCES `schoolsoft`.`schooluser` (`userId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1
-DEFAULT CHARACTER SET = latin1;
+  UNIQUE KEY `studentId_UNIQUE` (`studentId`),
+  KEY `schoolId` (`schoolId`),
+  KEY `firstname` (`firstName`,`lastName`(767)),
+  KEY `userid_idx` (`userId`),
+  KEY `student_batch_pk_idx` (`batchId`),
+  CONSTRAINT `schoolstundent` FOREIGN KEY (`schoolId`) REFERENCES `school` (`schoolId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `student_batch_pk` FOREIGN KEY (`batchId`) REFERENCES `batch` (`batchId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `userid` FOREIGN KEY (`userId`) REFERENCES `schooluser` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 -- -----------------------------------------------------

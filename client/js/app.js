@@ -47,7 +47,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
   .run(['$rootScope', "$cookies",'$location','$state',
     function ($rootScope,$cookies, $location,$state) {
         // keep user logged in after page refresh
-	  $rootScope.currentUser =  $cookies.get("userName");
+	  $rootScope.currentUser =  angular.fromJson($cookies.get("userName"));
 	  
 	  $rootScope.cssfile = 'sb-admin-2.css';
 	  

@@ -87,76 +87,13 @@
       "scale": null,
       "_selectable": true
     },
-    "birthPlace": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "nationality": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "_selectable": true
-    },
-    "language": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "religion": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
+   
     "address": {
       "type": "String",
       "required": false,
       "length": 200,
       "precision": null,
       "scale": null,
-      "_selectable": true
-    },
-    "city": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "state": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "pinCode": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "country": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
       "_selectable": true
     },
     "phone1": {

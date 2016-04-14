@@ -1,11 +1,15 @@
 var app = angular.module('app');
 
-app.controller('TeacherCreateController',['$state', '$scope','Teacher', '$rootScope', function($state,$scope, Teacher,$rootScope){
+app.controller('TeacherCreateController',['$state', '$scope','Teacher', 'School', '$rootScope', function($state,$scope, Teacher, School,$rootScope){
 
- 
+	$scope.teacher = {'isActive' : 'true', 'createdAt' : new Date(), 'updatedAt' : new Date(), 'schoolId' : $rootScope.currentUser.schoolId , 'userId' : 2};
+	if ($rootScope.currentUser.admin){
+		$scope.schools = School.find();
+	}
+	
 
     $scope.addTeacher=function(){
-    	var teacher = Object.assign({'isActive' : 'true', 'createdAt' : new Date(), 'updatedAt' : new Date(), 'schoolId' : 1 , 'userId' : 2}, $scope.teacher, $rootScope.currentUser.schoolId);
+    	var teacher = Object.assign({}, $scope.teacher );
        Teacher
         .create(teacher)
         .$promise
