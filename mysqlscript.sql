@@ -113,12 +113,9 @@ CREATE TABLE IF NOT EXISTS `schoolsoft`.`parent` (
   `education` varchar(100) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `schoolId` int(11) NOT NULL,
   `studentId` int(11) DEFAULT NULL,
   PRIMARY KEY (`paretnId`),
   KEY `studentIdx` (`studentId`),
-  KEY `schoolIdx` (`schoolId`),
-  CONSTRAINT `school` FOREIGN KEY (`schoolId`) REFERENCES `school` (`schoolId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `student` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -464,45 +461,26 @@ CREATE TABLE IF NOT EXISTS `schoolsoft`.`teacher` (
 -- -----------------------------------------------------
 -- Table `schoolsoft`.`timetable`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `schoolsoft`.`timetable` ;
-
-CREATE TABLE IF NOT EXISTS `schoolsoft`.`timetable` (
-  `timeTableId` INT(11) NOT NULL AUTO_INCREMENT,
-  `weekday` VARCHAR(45) NOT NULL,
-  `startTime` VARCHAR(45) NOT NULL,
-  `endTime` VARCHAR(45) NOT NULL,
-  `subjectId` INT(11) NOT NULL,
-  `teacherId` INT(11) NOT NULL,
-  `batchId` INT(11) NOT NULL,
-  `schoolId` INT(11) NOT NULL,
-  PRIMARY KEY (`timetableid`),
-  INDEX `timetableschoolIdfk_idx` (`schoolId` ASC),
-  INDEX `timetablebatchfk_idx` (`batchId` ASC),
-  INDEX `timetablesubjectfk_idx` (`subjectId` ASC),
-  INDEX `timetableteacherfk_idx` (`teacherId` ASC),
-  CONSTRAINT `timetablebatchfk`
-    FOREIGN KEY (`batchId`)
-    REFERENCES `schoolsoft`.`batch` (`batchId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `timetableschoolIdfk`
-    FOREIGN KEY (`schoolId`)
-    REFERENCES `schoolsoft`.`school` (`schoolId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `timetablesubjectfk`
-    FOREIGN KEY (`subjectId`)
-    REFERENCES `schoolsoft`.`subject` (`subjectId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `timetableteacherfk`
-    FOREIGN KEY (`teacherId`)
-    REFERENCES `schoolsoft`.`teacher` (`teacherId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
+DROP TABLE IF EXISTS `schoolsoft`.`timetable` (
+  `timeTableId` int(11) NOT NULL AUTO_INCREMENT,
+  `weekdayIndex` int(11) NOT NULL,
+  `startTime` varchar(45) NOT NULL,
+  `endTime` varchar(45) NOT NULL,
+  `subjectId` int(11) NOT NULL,
+  `teacherId` int(11) NOT NULL,
+  `batchId` int(11) NOT NULL,
+  `schoolId` int(11) NOT NULL,
+  `periodIndex` int(11) DEFAULT NULL,
+  PRIMARY KEY (`timeTableId`),
+  KEY `timetableschoolIdfk_idx` (`schoolId`),
+  KEY `timetablebatchfk_idx` (`batchId`),
+  KEY `timetablesubjectfk_idx` (`subjectId`),
+  KEY `timetableteacherfk_idx` (`teacherId`),
+  CONSTRAINT `timetablebatchfk` FOREIGN KEY (`batchId`) REFERENCES `batch` (`batchId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `timetableschoolIdfk` FOREIGN KEY (`schoolId`) REFERENCES `school` (`schoolId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `timetablesubjectfk` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`subjectId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `timetableteacherfk` FOREIGN KEY (`teacherId`) REFERENCES `teacher` (`teacherId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 

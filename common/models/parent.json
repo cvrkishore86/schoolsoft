@@ -111,14 +111,6 @@
       "scale": null,
       "_selectable": false
     },
-    "schoolId": {
-      "type": "Number",
-      "required": true,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "_selectable": false
-    },
     "studentId": {
       "type": "Number",
       "required": false,

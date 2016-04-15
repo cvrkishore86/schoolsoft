@@ -10,10 +10,6 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4">Student</div>
-			<div class="col-lg-4">Student dropdown</div>
-		</div>
-		<div class="row">
 			<div class="col-lg-4">No Of Parents</div>
 			<div class="col-lg-4">
 			<select class="form-control"  ng-model="noofparents" ng-change="setParents()" >
@@ -73,7 +69,7 @@
 											<td>
 												<div class="form-group">
 													<label>Date of Birth:</label> 
-													 <input name="dateOfBirth" ng-model="parent.dateOfBirth" type="date" class="form-control" required>
+													 <input name="dob" ng-model="parent.dob" type="date" class="form-control" required>
 
 												</div>
 											</td>
@@ -112,7 +108,6 @@
 												<div class="form-group">
 													<label>Education:</label> <input name="education"
 														ng-model="parent.education" class="form-control" required>
-
 												</div>
 											</td>
 										</tr>

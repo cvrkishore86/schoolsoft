@@ -23,12 +23,20 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
       }).state('logout', {
         url: '/logout',
         controller: 'AuthLogoutController'
-      }).state('dashboard', {
-          url: '/dashboard',
+      }).state('staticdashboard', {
+          url: '/staticdashboard',
           templateUrl: 'modules/student/dashboard.html',
           controller: 'StudentDashboardController',
           authenticate: true
-        }).state('studentlist', {
+        })
+        .state('dashboard', {
+          url: '/dashboard/:studentId',
+          templateUrl: 'modules/student/dashboard.html',
+          controller: 'StudentDashboardController',
+          authenticate: true
+        })
+        
+        .state('studentlist', {
         url: '/studentlist',
         templateUrl: 'modules/student/students.html',
         controller: 'StudentListController',
@@ -43,10 +51,27 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
             templateUrl: 'modules/teacher/teachers.html',
             controller: 'TeacherListController'
           }).state('createparents', {
-              url: '/createparents',
+              url: '/createparents/:studentId',
               templateUrl: 'modules/parent/createparents.html',
               controller: 'StudentCreateController'
-            });
+            }).state('parentlist', {
+                url: '/parentlist',
+                templateUrl: 'modules/student/teachers.html',
+                controller: 'TeacherListController'
+              }).state('createbatch', {
+                url: '/createbatch',
+                templateUrl: 'modules/batch/createbatch.html',
+                controller: 'BatchCreateController'
+              }).state('batchlist', {
+                  url: '/batchlist',
+                  templateUrl: 'modules/teacher/teachers.html',
+                  controller: 'TeacherListController'
+                }).state('createtimetable', {
+                    url: '/createtimetable',
+                    templateUrl: 'modules/timetable/createtimetable.html',
+                    controller: 'TimetableCreateController'
+                  });
+    $urlRouterProvider.otherwise('header');
   }])
   .run(['$rootScope', "$cookies",'$location','$state',
     function ($rootScope,$cookies, $location,$state) {

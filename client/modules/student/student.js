@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('StudentCreateController',['$state', '$scope','Student','School', 'Parent','$rootScope',  function($state,$scope, Student,School,Parent, $rootScope){
+app.controller('StudentCreateController',['$state', '$scope','Student','School', 'Parent','$rootScope','$stateParams',  function($state,$scope, Student,School,Parent, $rootScope,$stateParams ){
 	$scope.parents = new Array(0);
 	if ($rootScope.currentUser.admin){
 		$scope.schools = School.find();
@@ -8,17 +8,19 @@ app.controller('StudentCreateController',['$state', '$scope','Student','School',
 	
 
 		$scope.setParents = function() {
+		var parentObj = {studentId : $stateParams.studentId,  createdAt : new Date(), updatedAt : new Date() };
+		var parentObj2 = Object.assign({}, parentObj);
+		var parentObj3 = Object.assign({}, parentObj);
+		
 								switch ($scope.noofparents) {
 								case '1':
-									$scope.parents = [ new Parent() ];
+									$scope.parents = [parentObj];
 									break;
 								case '2':
-									$scope.parents = [ new Parent(),
-											new Parent() ];
+									$scope.parents = [parentObj, parentObj2];
 									break;
 								case '3':
-									$scope.parents = [ new Parent(),
-											new Parent(), new Parent() ];
+									$scope.parents = [parentObj, parentObj2, parentObj3];
 									break;
 								default:
 									$scope.parents = [];
@@ -26,6 +28,11 @@ app.controller('StudentCreateController',['$state', '$scope','Student','School',
 								}
 			}
 
+		 $scope.addParents = function() {
+		    	Parent.createMany($scope.parents);
+		    }
+		
+		
     $scope.addStudent=function(){
     	if ($scope.student.schoolId == null) {
     		$scope.student.schoolId = $rootScope.currentUser.schoolId;
@@ -33,7 +40,6 @@ app.controller('StudentCreateController',['$state', '$scope','Student','School',
     	$scope.student.createdBy = $rootScope.currentUser.userId;
     	
     	var studentobj = Object.assign({}, $scope.student);
-    	console.log(studentobj);
        Student
         .create(studentobj)
         .$promise
@@ -47,9 +53,7 @@ app.controller('StudentCreateController',['$state', '$scope','Student','School',
        
     }
     
-    $scope.addParents = function() {
-    	console.log($scope.parents);
-    }
+   
 
 }])
 app.controller('StudentListController', ['$scope', 'Student',  '$rootScope',
@@ -65,12 +69,12 @@ app.controller('StudentListController', ['$scope', 'Student',  '$rootScope',
     }
 
   }]);
-app.controller('StudentDashboardController', ['$scope', 'Student' ,'$rootScope',
-                                         function($scope, Student,$rootScope) {
+app.controller('StudentDashboardController', ['$scope', 'Student' ,'$rootScope','$stateParams',
+                                         function($scope, Student,$rootScope, $stateParams) {
 			var userId=$rootScope.currentUser.id;
                                        
                                        $scope.student = Student.findOne({filter : {where: {
-                                           userId: userId
+                                           studentId: $stateParams.studentId
                                        } , include : ['batch']}});
                                        
                                        $scope.labels = ['Telugu', 'Hindi', 'English', 'Maths', 'Science', 'Social'];
